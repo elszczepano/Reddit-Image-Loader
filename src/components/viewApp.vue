@@ -1,5 +1,10 @@
 <template lang="html">
- <h1>It works!</h1>
+  <div class="top-bar-menu">
+    <ul>
+      <li><h1>Reddit image loader</h1></li>
+      <li><input type="text" placeholder=""></li>
+    </ul>
+  </div>
 </template>
 
 <script>
