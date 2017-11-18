@@ -1,5 +1,5 @@
 <template lang="html">
-
+ <h1>It works!</h1>
 </template>
 
 <script>
@@ -14,5 +14,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/scss/view.scss";
+@import "../assets/scss/view.scss";
 </style>
