@@ -1,2 +1,27 @@
 @import "variables";
 @import "mixins";
+.top-bar-menu {
+  font-family: 'Noto Sans', sans-serif;
+  @include single-element;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    .title {
+      text-transform: uppercase;
+    }
+    li {
+      padding: 1rem 2rem;
+      font-weight: 300;
+      input {
+        border: 1px solid #e9e9e9;
+        border-radius: 1rem;
+        font-size: 1rem;
+        padding: 0.2rem 0;
+      }
+    }
+  }
+}

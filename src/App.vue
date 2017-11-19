@@ -9,7 +9,9 @@ export default {
   name: 'app'
 }
 </script>
-
-<style lang="scss" src="./assets/scss/view.scss"></style>
-<style>
+<style lang="scss">
+    @import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&amp;subset=latin-ext');
+  body {
+    margin: 0;
+  }
 </style>
