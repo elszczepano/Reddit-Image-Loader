@@ -21,6 +21,12 @@
         border-radius: 1rem;
         font-size: 1rem;
         padding: 0.2rem 0;
+        outline: none;
+        user-select: auto;
+      }
+      input::selection {
+        background-color: $primary-bg-color;
+        color: white;
       }
     }
   }
