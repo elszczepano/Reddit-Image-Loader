@@ -1,14 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import viewApp from '@/components/viewApp'
+import Menu from '@/components/Menu'
+import Content from '@/components/Content'
+import Main from '@/components/Main'
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'viewApp',
-      component: viewApp
+      name: 'Main',
+      component: Main
     }
   ]
 })
