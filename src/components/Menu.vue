@@ -17,5 +17,5 @@ export default {
 }
 </script>
 
-<style lang="scss" src="../assets/scss/view.scss" scoped>
+<style lang="scss" src="../assets/scss/menu.scss" scoped>
 </style>
