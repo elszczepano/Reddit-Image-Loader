@@ -28,6 +28,9 @@
         background-color: $primary-bg-color;
         color: white;
       }
+      input::placeholder {
+        color: #d0d0d0;
+      }
     }
   }
 }
