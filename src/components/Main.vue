@@ -6,14 +6,11 @@
 </template>
 
 <script>
-import Menu from '@/components/menu';
-import Content from '@/components/content';
+import Menu from '@/components/menu'
+import Content from '@/components/content'
 export default {
   name: 'Main',
-  components: {
-    'Menu': Menu,
-    'Content' : Content
-    }
+  components: { Menu, Content }
 }
 </script>
 
