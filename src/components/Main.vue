@@ -23,12 +23,12 @@ export default {
   },
   methods: {
     sendRequest: function (myUrl) {
-      console.log(MyUrl)
+      console.log(myUrl)
     },
     getURL: function () {
       const field = document.querySelector('#subreddit').value
       let url = `https://reddit.com/r/${field}.json`
-      sendRequest(url)
+      this.sendRequest(url)
     }
   }
 }
