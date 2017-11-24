@@ -3,7 +3,7 @@
     <div class="top-bar-menu">
         <ul>
           <li class="title">Reddit image loader</li>
-          <li>https://reddit.com/r/<input type="text" id='subreddit' placeholder="your-path" v-on:keyup.enter="getURL"></li>
+          <li>https://reddit.com/r/<input type="text" id='subreddit' placeholder="your-path" v-model="subreddit" v-on:keyup.enter="getURL"></li>
           <li>and hit ENTER!</li>
         </ul>
     </div>
@@ -18,16 +18,18 @@ export default {
   name: 'Main',
   data () {
     return {
-      msg: 'Reddit json'
+      msg: 'Reddit json',
+      subreddit: ''
     }
   },
   methods: {
-    sendRequest: function (myUrl) {
-      console.log(myUrl)
+    sendRequest: (url) => {
+      this.$http.get(url).then(response => {
+        console.log(response.status)
+      })
     },
-    getURL: function () {
-      const field = document.querySelector('#subreddit').value
-      let url = `https://reddit.com/r/${field}.json`
+    getURL: () => {
+      let url = `https://reddit.com/r/${this.subreddit.value}.json`
       this.sendRequest(url)
     }
   }
