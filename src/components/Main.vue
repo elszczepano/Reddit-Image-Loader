@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     sendRequest (url) {
-      this.$http.get(url, { headers: {'Authorization': 'Basic YXBpOnBhc3N3b3Jk'} }).then(response => {
+      this.$http.get(url, {responseType: 'json'}).then(response => {
         console.log(response.status)
       })
     },
