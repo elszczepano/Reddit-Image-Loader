@@ -5,7 +5,7 @@ import VueResource from 'vue-resource'
 
 Vue.use(VueResource)
 Vue.http.options.root = 'http://reddit.com/r/'
-
+Vue.http.headers.common['Access-Control-Allow-Origin'] = '*'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
