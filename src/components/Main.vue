@@ -31,7 +31,9 @@ export default {
         return receivedData['data']['children']
       }).then(function (list) {
         for (let i = 0; i < list.length; i++) {
-          console.log(list[i]['data']['url'])
+          if (list[i]['data']['post_hint'] === 'image') {
+            console.log(list[i]['data']['url'])
+          }
         }
       })
     },
