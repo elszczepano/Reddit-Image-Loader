@@ -24,18 +24,15 @@ export default {
   },
   methods: {
     sendRequest (url) {
-      fetch(url).then(function (response) {
-        return response.json()
-      }).then(function (receivedData) {
-        console.log(receivedData['data']['children'])
-        return receivedData['data']['children']
-      }).then(function (list) {
+      fetch(url).then(response => response.json())
+      .then(receivedData => receivedData['data']['children'])
+      .then(function (list) {
         for (let i = 0; i < list.length; i++) {
           if (list[i]['data']['post_hint'] === 'image') {
             console.log(list[i]['data']['url'])
           }
         }
-      })
+      }).catch(e => alert(`Subreddit ${this.subreddit} not found`))
     },
     getURL () {
       let url = `https://www.reddit.com/r/${this.subreddit}.json`
