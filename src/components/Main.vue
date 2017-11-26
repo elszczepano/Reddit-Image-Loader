@@ -25,11 +25,18 @@ export default {
   methods: {
     sendRequest (url) {
       fetch(url).then(function (response) {
-        console.log(response.json())
+        return response.json()
+      }).then(function (receivedData) {
+        console.log(receivedData['data']['children'])
+        return receivedData['data']['children']
+      }).then(function (list) {
+        for (let i = 0; i < list.length; i++) {
+          console.log(list[i]['data']['url'])
+        }
       })
     },
     getURL () {
-      let url = `https://www.reddit.com/r/${this.subreddit}/hot.json`
+      let url = `https://www.reddit.com/r/${this.subreddit}.json`
       this.sendRequest(url)
     }
   }
