@@ -3,7 +3,7 @@
     <div class="top-bar-menu">
         <ul>
           <li class="title">Reddit image loader</li>
-          <li>https://www.reddit.com/r/<input v-model="subreddit" type="text" id='subreddit' placeholder="your-path" v-on:keyup.enter="getURL"></li>
+          <li>https://www.reddit.com/r/<input v-model="subreddit" type="text" id='subreddit' placeholder="your-path" @keyup.enter="getURL"></li>
           <li>and hit ENTER!</li>
         </ul>
     </div>
