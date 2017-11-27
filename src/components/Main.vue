@@ -19,20 +19,20 @@ export default {
   data () {
     return {
       msg: 'Reddit json',
-      subreddit: '',
-      pictures: []
+      pictures: [],
+      subreddit: ''
     }
   },
   methods: {
     sendRequest (url) {
       fetch(url).then(response => response.json())
       .then(receivedData => receivedData['data']['children'])
-      .then(function (list) {
-        for (let i = 0; i < list.length; i++) {
-          if (list[i]['data']['post_hint'] === 'image') {
-            this.pictures.push(list[i]['data']['url'])
+      .then(list => {
+        this.pictures = list.map(listItem => {
+          if (listItem['data']['post_hint'] === 'image') {
+            return listItem['data']['url']
           }
-        }
+        })
       }).catch(e => alert(`Subreddit ${this.subreddit} not found`))
     },
     getURL () {
