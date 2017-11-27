@@ -7,6 +7,7 @@
           <li>and hit ENTER!</li>
         </ul>
     </div>
+    <h1>Your pictures</h1>
     <div class="photo-container">
         <img v-bind:src="picture" class="photo" v-for="picture in pictures">
     </div>
@@ -28,10 +29,9 @@ export default {
       fetch(url).then(response => response.json())
       .then(receivedData => receivedData['data']['children'])
       .then(list => {
+        console.log(list)
         this.pictures = list.map(listItem => {
-          if (listItem['data']['post_hint'] === 'image') {
-            return listItem['data']['url']
-          }
+            return listItem["data"]["preview"]["images"][0]["source"]["url"]
         })
       }).catch(e => alert(`Subreddit ${this.subreddit} not found`))
     },
