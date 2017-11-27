@@ -7,3 +7,23 @@
     height: auto !important;
   }
 }
+@media (max-width: 1200px) {
+  .photo-container {
+  column-count:         4;
+  }
+}
+@media (max-width: 1000px) {
+  .photo-container {
+  column-count:         3;
+  }
+}
+@media (max-width: 800px) {
+  .photo-container {
+  column-count:         2;
+  }
+}
+@media (max-width: 400px) {
+  .photo-container {
+  column-count:         1;
+  }
+}

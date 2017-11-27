@@ -1,7 +1,7 @@
 @import "variables";
 @import "mixins";
 .top-bar-menu {
-  font-family: 'Noto Sans', sans-serif;
+  margin-bottom: 2rem;
   @include single-element;
   ul {
     margin: 0;
@@ -33,4 +33,11 @@
       }
     }
   }
+}
+h1 {
+  color: #d0d0d0;
+  font-weight: 300;
+  padding: 1rem;
+  border-bottom: 1px solid #d0d0d0;
+  margin: 1rem;
 }
