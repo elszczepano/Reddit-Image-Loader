@@ -7,8 +7,8 @@
           <li>and hit ENTER!</li>
         </ul>
     </div>
-    <div class="photo-container">
-
+    <div class="photo-container" v-for="picture in pictures">
+        <img v-bind:src="picture">
     </div>
   </div>
 </template>
@@ -19,7 +19,8 @@ export default {
   data () {
     return {
       msg: 'Reddit json',
-      subreddit: ''
+      subreddit: '',
+      pictures: []
     }
   },
   methods: {
@@ -29,7 +30,7 @@ export default {
       .then(function (list) {
         for (let i = 0; i < list.length; i++) {
           if (list[i]['data']['post_hint'] === 'image') {
-            console.log(list[i]['data']['url'])
+            this.pictures.push(list[i]['data']['url'])
           }
         }
       }).catch(e => alert(`Subreddit ${this.subreddit} not found`))
