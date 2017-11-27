@@ -31,11 +31,10 @@ export default {
       .then(list => {
         console.log(list)
         this.pictures = list.map(listItem => {
-          if (listItem["data"]["preview"] === undefined) {
+          if (listItem['data']['preview'] === undefined) {
             return listItem['data']['url']
-          }
-          else {
-            return listItem["data"]["preview"]["images"][0]["source"]["url"]
+          } else {
+            return listItem['data']['preview']['images'][0]['source']['url']
           }
         })
       }).catch(e => alert(`Subreddit ${this.subreddit} not found`))
