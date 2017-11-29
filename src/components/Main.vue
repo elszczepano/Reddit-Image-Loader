@@ -3,7 +3,7 @@
     <div class="top-bar-menu">
         <ul>
           <li class="title">Reddit image loader</li>
-          <li>https://www.reddit.com/r/<input v-model="subreddit" type="text" id='subreddit' placeholder="your-path" @keyup.enter="getURL"></li>
+          <li>https://www.reddit.com/r/<input v-model="subreddit" type="text" id='subreddit' placeholder="subreddit-name" @keyup.enter="getURL"></li>
           <li>and hit ENTER!</li>
         </ul>
     </div>
@@ -29,7 +29,6 @@ export default {
       fetch(url).then(response => response.json())
       .then(receivedData => receivedData['data']['children'])
       .then(list => {
-        console.log(list)
         this.pictures = list.map(listItem => {
           if (listItem['data']['preview'] === undefined) {
             return listItem['data']['url']
