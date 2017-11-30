@@ -1,3 +1,8 @@
+@import "../../../node_modules/font-awesome/scss/font-awesome";
+.icon-user {
+  @extend .fa;
+  @extend .fa-user;
+}
 @import "variables";
 @import "mixins";
 @import "menu";
