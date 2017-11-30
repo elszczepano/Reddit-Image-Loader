@@ -26,6 +26,7 @@ export default {
   },
   methods: {
     sendRequest (url) {
+      this.pictures = []
       fetch(url).then(response => response.json())
       .then(receivedData => receivedData['data']['children'])
       .then(list => { this.pictures = list.map(listItem => (listItem['data']['preview'] === undefined) ? listItem['data']['url'] : listItem['data']['preview']['images'][0]['source']['url']) })
