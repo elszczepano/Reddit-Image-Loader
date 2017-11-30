@@ -11,10 +11,12 @@
     <div class="photo-container">
         <img v-bind:src="picture" class="photo" v-for="picture in pictures">
     </div>
+    <ErrorDisplay></ErrorDisplay>
   </div>
 </template>
 
 <script>
+import ErrorDisplay from './ErrorDisplay.vue'
 export default {
   name: 'Main',
   data () {
@@ -23,6 +25,9 @@ export default {
       pictures: [],
       subreddit: ''
     }
+  },
+  components: {
+    ErrorDisplay
   },
   methods: {
     sendRequest (url) {
