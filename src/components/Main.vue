@@ -28,15 +28,8 @@ export default {
     sendRequest (url) {
       fetch(url).then(response => response.json())
       .then(receivedData => receivedData['data']['children'])
-      .then(list => {
-        this.pictures = list.map(listItem => {
-          if (listItem['data']['preview'] === undefined) {
-            return listItem['data']['url']
-          } else {
-            return listItem['data']['preview']['images'][0]['source']['url']
-          }
-        })
-      }).catch(e => alert(`Subreddit ${this.subreddit} not found`))
+      .then(list => this.pictures = list.map(listItem => (listItem['data']['preview'] === undefined) ? listItem['data']['url'] : listItem['data']['preview']['images'][0]['source']['url']))
+      .catch(e => alert(e))
     },
     getURL () {
       let url = `https://www.reddit.com/r/${this.subreddit}.json`
