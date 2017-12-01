@@ -2,10 +2,9 @@
 <div class="error-box">
   <header class="error-box-header">
     <span>Notice <span class="fa fa-exclamation-triangle" aria-hidden="true"></span></span>
-    <span class="fa fa-times" aria-hidden="true"></span>
   </header>
   <div class="error-box-body">
-      <p>Example notice</p>
+      <p>{{this.errorValue}}</p>
   </div>
   <hr>
   <footer class="error-box-footer">
@@ -16,6 +15,8 @@
 
 <script>
 export default {
+  name: 'ErrorDisplay',
+  props: ['errorValue']
 }
 </script>
 

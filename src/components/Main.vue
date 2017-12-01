@@ -11,33 +11,35 @@
     <div class="photo-container">
         <img v-bind:src="picture" class="photo" v-for="picture in pictures">
     </div>
-    <ErrorDisplay></ErrorDisplay>
+    <ErrorDisplay v-if="error!=''" :errorValue="error"></ErrorDisplay>
   </div>
 </template>
 
 <script>
 import ErrorDisplay from './ErrorDisplay.vue'
 export default {
-  name: 'Main',
   data () {
     return {
       msg: 'Reddit json',
       pictures: [],
-      subreddit: ''
+      subreddit: '',
+      error: 'hello'
     }
   },
+  name: 'Main',
   components: {
     ErrorDisplay
   },
   methods: {
     sendRequest (url) {
-      this.pictures = []
       fetch(url).then(response => response.json())
       .then(receivedData => receivedData['data']['children'])
       .then(list => { this.pictures = list.map(listItem => (listItem['data']['preview'] === undefined) ? listItem['data']['url'] : listItem['data']['preview']['images'][0]['source']['url']) })
-      .catch(e => alert(e))
+      .catch(e => { this.error = e.message })
     },
     getURL () {
+      this.pictures = []
+      this.error = ''
       let url = `https://www.reddit.com/r/${this.subreddit}.json`
       this.sendRequest(url)
     }
