@@ -2,7 +2,7 @@
   <div class="container">
     <div class="top-bar-menu">
         <ul>
-          <li class="title">Reddit image loader <span class="fa fa-reddit-alien" aria-hidden="true"></span></li>
+          <li class="title"><a href="index.html">Reddit image loader <span class="fa fa-reddit-alien" aria-hidden="true"></span></a></li>
           <li>https://www.reddit.com/r/<input v-model="subreddit" type="text" id='subreddit' placeholder="subreddit-name" @keyup.enter="getURL"></li>
           <li>and hit ENTER!</li>
         </ul>
@@ -45,5 +45,5 @@ export default {
 }
 </script>
 
-<style lang="scss" src="../assets/scss/content.scss" scoped>
+<style lang="scss" src="../assets/scss/style.scss" scoped>
 </style>
