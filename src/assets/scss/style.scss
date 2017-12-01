@@ -7,6 +7,10 @@
 @import "mixins";
 @import "menu";
 @import "images";
+@import "notice";
 * {
   font-family: 'Noto Sans', sans-serif;
+}
+.container {
+  position: relative;
 }
