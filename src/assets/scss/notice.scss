@@ -1,0 +1,48 @@
+@import "variables";
+@import "mixins";
+.error-box {
+  position: fixed;
+  bottom: 5%;
+  left:3%;
+  z-index: 9999;
+  width: 25rem;
+  @include single-element;
+  background-color: #FFF;
+  .error-box-header {
+    background-color: $error-color;
+    color: #FFF;
+    padding: .2rem 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  .error-box-body {
+    p {
+      margin: 0;
+      padding: .5rem;
+    }
+  }
+  hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .error-box-footer {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      background-color: $error-color;
+      transition: .3s background-color;
+      border: none;
+      color: #FFF;
+      font-size: .9rem;
+      margin: 0 .5rem .5rem 0;
+      padding: .2rem .4rem;
+      cursor: pointer;
+      outline: none;
+    }
+    button:hover {
+      background-color: #E03030;
+    }
+  }
+}
