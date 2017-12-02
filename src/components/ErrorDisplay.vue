@@ -8,7 +8,7 @@
   </div>
   <hr>
   <footer class="error-box-footer">
-    <button type="submit" name="button">close</button>
+    <button type="submit" name="button" @click="hideElement">close</button>
   </footer>
 </div>
 </template>
@@ -16,7 +16,15 @@
 <script>
 export default {
   name: 'ErrorDisplay',
-  props: ['errorValue']
+  props: [
+    'errorValue',
+    'showError'
+  ],
+  methods: {
+    hideElement () {
+      this.$emit(false, this.showError)
+    }
+  }
 }
 </script>
 

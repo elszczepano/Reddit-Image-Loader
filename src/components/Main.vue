@@ -11,7 +11,7 @@
     <div class="photo-container">
         <img v-bind:src="picture" class="photo" v-for="picture in pictures">
     </div>
-    <ErrorDisplay v-if="error!=''" :errorValue="error"></ErrorDisplay>
+    <ErrorDisplay v-if="showError" :errorValue="error"  v-model="isVisible"></ErrorDisplay>
   </div>
 </template>
 
@@ -23,7 +23,9 @@ export default {
       msg: 'Reddit json',
       pictures: [],
       subreddit: '',
-      error: ''
+      error: '',
+      count: 1,
+      showError: false
     }
   },
   name: 'Main',
@@ -35,12 +37,15 @@ export default {
       fetch(url).then(response => response.json())
       .then(receivedData => receivedData['data']['children'])
       .then(list => { this.pictures = list.map(listItem => (listItem['data']['preview'] === undefined) ? listItem['data']['url'] : listItem['data']['preview']['images'][0]['source']['url']) })
-      .catch(e => { this.error = e.message })
+      .catch(e => {
+        this.error = e.message
+        this.showError = true
+      })
     },
     getURL () {
       this.pictures = []
       this.error = ''
-      let url = `https://www.reddit.com/r/${this.subreddit}.json`
+      let url = `https://www.reddit.com/r/${this.subreddit}.json?count=${this.count}`
       this.sendRequest(url)
     }
   }
