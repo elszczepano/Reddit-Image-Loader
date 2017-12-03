@@ -11,7 +11,7 @@
     <div class="photo-container">
         <img v-bind:src="picture" class="photo" v-for="picture in pictures">
     </div>
-    <ErrorDisplay v-if="showError" :errorValue="error"  v-model="isVisible"></ErrorDisplay>
+    <ErrorDisplay v-if="showError" :errorValue="error" @close="showError = false"></ErrorDisplay>
   </div>
 </template>
 
@@ -45,6 +45,7 @@ export default {
     getURL () {
       this.pictures = []
       this.error = ''
+      this.showError = false
       let url = `https://www.reddit.com/r/${this.subreddit}.json?count=${this.count}`
       this.sendRequest(url)
     }
