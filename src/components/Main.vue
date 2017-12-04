@@ -5,8 +5,8 @@
           <li class="title"><a href="">Reddit image loader <span class="fa fa-reddit-alien" aria-hidden="true"></span></a></li>
           <li>https://www.reddit.com/r/<input v-model="subreddit" type="text" id='subreddit' placeholder="subreddit-name" @keyup.enter="getURL"></li>
           <li>and hit ENTER!</li>
-          <li @click="getURL('prev')" v-if="this.pictures.length > 0">Prev</li>
-          <li @click="getURL('next')" v-if="this.pictures.length > 0">Next</li>
+          <li class="nav-pill" @click="getURL('prev')" v-if="this.pictures.length > 0"><span class="fa fa-arrow-left" aria-hidden="true"></span> Prev</li>
+          <li class="nav-pill" @click="getURL('next')" v-if="this.pictures.length > 0">Next <span class="fa fa-arrow-right" aria-hidden="true"></span></li>
         </ul>
     </div>
     <h1>Your pictures <span class="fa fa-picture-o" aria-hidden="true"></span></h1>

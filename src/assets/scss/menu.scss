@@ -3,28 +3,30 @@
 .top-bar-menu {
   margin-bottom: 2rem;
   @include single-element;
-  background-color: $primary-bg-color;
+  background-color: $primary-color;
   color: #FFF;
   ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     font-size: 1rem;
+    padding: 1rem 2rem;
     .title {
       text-transform: uppercase;
     }
     li {
-      padding: 1rem 2rem;
       font-weight: 300;
+      margin: 0 2rem;
       a {
         color: #FFF;
         text-decoration: none;
         transition: .5s color;
       }
       a:hover {
-        color: #005D53;
+        color: $primary-color-dark;
       }
       input {
         border: 1px solid #e9e9e9;
@@ -35,12 +37,22 @@
         user-select: auto;
       }
       input::selection {
-        background-color: $primary-bg-color;
+        background-color: $primary-color;
         color: white;
       }
       input::placeholder {
         color: #d0d0d0;
       }
+    }
+    .nav-pill {
+      background-color: $primary-color-dark;
+      border-radius: 25px;
+      padding: .5rem;
+      cursor: pointer;
+      transition: .3s background-color;
+    }
+    .nav-pill:hover {
+      background-color: #00776A;
     }
   }
 }
