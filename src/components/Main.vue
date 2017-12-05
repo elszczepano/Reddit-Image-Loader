@@ -5,8 +5,8 @@
           <li class="title"><a href="">Reddit image loader <span class="fa fa-reddit-alien" aria-hidden="true"></span></a></li>
           <li>https://www.reddit.com/r/<input v-model="subreddit" type="text" id='subreddit' placeholder="subreddit-name" @keyup.enter="getURL"></li>
           <li>and hit ENTER!</li>
-          <li class="nav-pill" @click="getURL('prev')" v-if="this.pictures.length > 0"><span class="fa fa-arrow-left" aria-hidden="true"></span> Prev</li>
-          <li class="nav-pill" @click="getURL('next')" v-if="this.pictures.length > 0">Next <span class="fa fa-arrow-right" aria-hidden="true"></span></li>
+          <li class="nav-pill" @click="getURL('prev')" v-if="this.before"><span class="fa fa-arrow-left" aria-hidden="true"></span> Prev</li>
+          <li class="nav-pill" @click="getURL('next')" v-if="this.after">Next <span class="fa fa-arrow-right" aria-hidden="true"></span></li>
         </ul>
     </div>
     <h1>Your pictures <span class="fa fa-picture-o" aria-hidden="true"></span></h1>
@@ -26,9 +26,10 @@ export default {
       pictures: [],
       subreddit: '',
       error: '',
+      count: 0,
       showError: false,
-      after: '',
-      before: ''
+      after: false,
+      before: false
     }
   },
   name: 'Main',
@@ -57,10 +58,14 @@ export default {
       let url = ''
       switch (param) {
         case 'prev':
-          url = `https://www.reddit.com/r/${this.subreddit}.json?before=${this.before}`
+          if(this.count%5==0){
+            this.count+=1
+          } else this.count -=25
+          url = `https://www.reddit.com/r/${this.subreddit}.json?count=${this.count}&before=${this.before}`
           break
         case 'next':
-          url = `https://www.reddit.com/r/${this.subreddit}.json?after=${this.after}`
+          this.count +=25
+          url = `https://www.reddit.com/r/${this.subreddit}.json?count=${this.count}&after=${this.after}`
           break
         default:
           url = `https://www.reddit.com/r/${this.subreddit}.json`
