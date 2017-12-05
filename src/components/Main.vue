@@ -49,6 +49,8 @@ export default {
       .catch(e => {
         this.error = e.message
         this.showError = true
+        this.before = false
+        this.after = false
       })
     },
     getURL (param) {
