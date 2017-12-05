@@ -11,7 +11,9 @@
     </div>
     <h1>Your pictures <span class="fa fa-picture-o" aria-hidden="true"></span></h1>
     <div class="photo-container">
-        <img v-bind:src="picture" class="photo" v-for="picture in pictures">
+        <transition name="slide-fade" v-for="picture in pictures">
+          <img v-bind:src="picture" class="photo">
+        </transition>
     </div>
     <ErrorDisplay v-if="showError" :errorValue="error" @close="showError = false"></ErrorDisplay>
   </div>

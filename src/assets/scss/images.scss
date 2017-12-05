@@ -5,7 +5,15 @@
   img {
     width: 100% !important;
     height: auto !important;
+    animation: .3s ease-out imageAppear;
   }
+}
+.slide-fade-leave-active {
+  transition: all .3s ease;
+}
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
 }
 @media (max-width: 1200px) {
   .photo-container {
@@ -25,5 +33,15 @@
 @media (max-width: 400px) {
   .photo-container {
   column-count:         1;
+  }
+}
+@keyframes imageAppear {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
   }
 }
