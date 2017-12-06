@@ -11,7 +11,7 @@
     </div>
     <h1>Your pictures <span class="fa fa-picture-o" aria-hidden="true"></span></h1>
     <div class="photo-container">
-        <transition name="slide-fade" v-for="picture in pictures">
+        <transition name="slide-fade" v-for="picture in pictures" :key="picture.url">
           <img v-bind:src="picture" class="photo">
         </transition>
     </div>
@@ -42,7 +42,6 @@ export default {
     sendRequest (url) {
       fetch(url).then(response => response.json())
       .then(receivedData => {
-        console.log(receivedData)
         this.before = receivedData['data']['before']
         this.after = receivedData['data']['after']
         return receivedData['data']['children']
@@ -62,13 +61,13 @@ export default {
       let url = ''
       switch (param) {
         case 'prev':
-          if(this.count%5==0){
-            this.count+=1
-          } else this.count -=25
+          if (this.count % 5 === 0) {
+            this.count += 1
+          } else this.count -= 25
           url = `https://www.reddit.com/r/${this.subreddit}.json?count=${this.count}&before=${this.before}`
           break
         case 'next':
-          this.count +=25
+          this.count += 25
           url = `https://www.reddit.com/r/${this.subreddit}.json?count=${this.count}&after=${this.after}`
           break
         default:
