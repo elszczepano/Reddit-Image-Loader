@@ -15,7 +15,7 @@
           <img v-bind:src="picture" class="photo">
         </transition>
     </div>
-    <ErrorDisplay v-if="showError" :errorValue="error" @close="showError = false"></ErrorDisplay>
+    <error-display v-if="showError" :errorValue="error" @close="showError = false" />
   </div>
 </template>
 
