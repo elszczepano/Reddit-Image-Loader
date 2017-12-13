@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VueResource from 'vue-resource'
+import 'font-awesome/scss/font-awesome.scss'
 
 Vue.use(VueResource)
 Vue.http.options.root = 'http://www.reddit.com/r/'
