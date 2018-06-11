@@ -13,11 +13,9 @@
     color: #FFF;
     padding: .2rem 1rem;
   }
-  .error-box-body {
-    p {
+  .error-box-body p {
       margin: 0;
       padding: .5rem;
-    }
   }
   hr {
     border: 0;
@@ -38,9 +36,9 @@
       padding: .2rem .4rem;
       cursor: pointer;
       outline: none;
-    }
-    button:hover {
-      background-color: #E03030;
+      &:hover {
+        background-color: #E03030;
+      }
     }
   }
 }
