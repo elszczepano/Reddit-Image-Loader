@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="container">
-      <headroom>
+      <headroom speed="500">
           <header>
               <div class="top-bar-menu">
                   <ul>
