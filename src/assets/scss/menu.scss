@@ -2,10 +2,6 @@
 @import "mixins";
 
 .top-bar-menu {
-  left: 0;
-  top: 0;
-  right: 0;
-  position: fixed;
   margin-bottom: 2rem;
   @include single-element;
   background-color: $primary-color;

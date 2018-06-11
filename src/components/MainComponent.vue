@@ -1,19 +1,23 @@
 <template lang="html">
   <div class="container">
-    <div class="top-bar-menu">
-        <ul>
-          <li class="title"><a href="">Reddit image loader <span class="fa fa-reddit-alien" aria-hidden="true"></span></a></li>
-          <li>https://www.reddit.com/r/
-              <input v-model="subreddit" type="text" id='subreddit' placeholder="subreddit-name" @keyup.enter="getURL">
-              <span class="encourage-desktop"> and hit ENTER!</span>
-              <span class="encourage-mobile"> and <button @click="getURL" class="nav-pill">SEARCH</button></span>
-          </li>
-          <li>
-              <button @click="getURL('prev')" :disabled="!this.before" class="nav-pill"><span class="fa fa-arrow-left" aria-hidden="true"></span> Prev</button>
-              <button @click="getURL('next')" :disabled="!this.after" class="nav-pill">Next <span class="fa fa-arrow-right" aria-hidden="true"></span></button>
-          </li>
-        </ul>
-    </div>
+      <headroom>
+          <header>
+              <div class="top-bar-menu">
+                  <ul>
+                      <li class="title"><a href="">Reddit image loader <span class="fa fa-reddit-alien" aria-hidden="true"></span></a></li>
+                      <li>https://www.reddit.com/r/
+                          <input v-model="subreddit" type="text" id='subreddit' placeholder="subreddit-name" @keyup.enter="getURL">
+                          <span class="encourage-desktop"> and hit ENTER!</span>
+                          <span class="encourage-mobile"> and <button @click="getURL" class="nav-pill">SEARCH</button></span>
+                      </li>
+                      <li>
+                          <button @click="getURL('prev')" :disabled="!this.before" class="nav-pill"><span class="fa fa-arrow-left" aria-hidden="true"></span> Prev</button>
+                          <button @click="getURL('next')" :disabled="!this.after" class="nav-pill">Next <span class="fa fa-arrow-right" aria-hidden="true"></span></button>
+                      </li>
+                  </ul>
+              </div>
+          </header>
+      </headroom>
     <h1>Your pictures <span class="fa fa-picture-o" aria-hidden="true"></span></h1>
     <div class="photo-container">
         <transition name="slide-fade" v-for="picture in pictures" :key="picture.url">
@@ -26,6 +30,7 @@
 
 <script>
 import ErrorDisplay from './ErrorDisplay.vue'
+import { headroom } from 'vue-headroom'
 import API from '../api'
 export default {
   data () {
@@ -41,7 +46,8 @@ export default {
   },
   name: 'MainComponent',
   components: {
-    ErrorDisplay
+    ErrorDisplay,
+    headroom
   },
   methods: {
     check_format (url) {
