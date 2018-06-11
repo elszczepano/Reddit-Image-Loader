@@ -5,14 +5,14 @@
           <li class="title"><a href="">Reddit image loader <span class="fa fa-reddit-alien" aria-hidden="true"></span></a></li>
           <li>https://www.reddit.com/r/<input v-model="subreddit" type="text" id='subreddit' placeholder="subreddit-name" @keyup.enter="getURL"></li>
           <li>and hit ENTER!</li>
-          <li class="nav-pill" @click="getURL('prev')" v-if="this.before"><span class="fa fa-arrow-left" aria-hidden="true"></span> Prev</li>
-          <li class="nav-pill" @click="getURL('next')" v-if="this.after">Next <span class="fa fa-arrow-right" aria-hidden="true"></span></li>
+          <li @click="getURL('prev')"><button :disabled="!this.before" class="nav-pill"><span class="fa fa-arrow-left" aria-hidden="true"></span> Prev</button></li>
+          <li @click="getURL('next')"><button :disabled="!this.after" class="nav-pill">Next <span class="fa fa-arrow-right" aria-hidden="true"></span></button></li>
         </ul>
     </div>
     <h1>Your pictures <span class="fa fa-picture-o" aria-hidden="true"></span></h1>
     <div class="photo-container">
         <transition name="slide-fade" v-for="picture in pictures" :key="picture.url">
-          <img v-bind:src="picture" class="photo">
+          <img :src="picture" class="photo">
         </transition>
     </div>
     <error-display v-if="showError" :errorValue="error" @close="showError = false" />
@@ -21,10 +21,10 @@
 
 <script>
 import ErrorDisplay from './ErrorDisplay.vue'
+import API from '../api'
 export default {
   data () {
     return {
-      msg: 'Reddit json',
       pictures: [],
       subreddit: '',
       error: '',
@@ -34,20 +34,30 @@ export default {
       before: false
     }
   },
-  name: 'Main',
+  name: 'MainComponent',
   components: {
     ErrorDisplay
   },
   methods: {
+    check_format (url) {
+      if (url.slice(url.length - 4, url.length - 3) === '.') return true
+      return false
+    },
     sendRequest (url) {
-      fetch(url).then(response => response.json())
-      .then(receivedData => {
-        this.before = receivedData['data']['before']
-        this.after = receivedData['data']['after']
-        return receivedData['data']['children']
-      })
-      .then(list => { this.pictures = list.map(listItem => (listItem['data']['preview'] === undefined) ? listItem['data']['url'] : listItem['data']['preview']['images'][0]['source']['url']) })
+      API.get(url)
+          .then(response => {
+            this.before = response.data.data.before
+            this.after = response.data.data.after
+              console.log(response.data)
+            return response.data.data.children
+          })
+          .then(pictures => {
+            pictures.forEach((key) => {
+              if (this.check_format(key.data.url)) this.pictures.push(key.data.url)
+            })
+          })
       .catch(e => {
+        console.log(e)
         this.error = e.message
         this.showError = true
         this.before = false

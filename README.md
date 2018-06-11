@@ -4,6 +4,8 @@ This app displays photos from any subreddit.
 All you need is a name of subreddit,
 hit enter and here you go!
 
+Partly **.gif** support
+
 ##  Installation
 
 Download or clone this repository and then
