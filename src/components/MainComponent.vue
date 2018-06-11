@@ -66,9 +66,8 @@ export default {
               if (this.check_format(key.data.url)) this.pictures.push(key.data.url)
             })
           })
-      .catch(e => {
-        console.log(e)
-        this.error = e.message
+      .catch(error => {
+        this.error = error.message
         this.showError = true
         this.before = false
         this.after = false
