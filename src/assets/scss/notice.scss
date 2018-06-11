@@ -5,7 +5,7 @@
   bottom: 5%;
   left:3%;
   z-index: 9999;
-  width: 25rem;
+  width: 20rem;
   @include single-element;
   background-color: #FFF;
   .error-box-header {
@@ -40,5 +40,10 @@
         background-color: #E03030;
       }
     }
+  }
+}
+@media (max-width: 600px) {
+  .error-box {
+    width: 10rem;
   }
 }
