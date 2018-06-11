@@ -2,6 +2,10 @@
 @import "mixins";
 
 .top-bar-menu {
+  left: 0;
+  top: 0;
+  right: 0;
+  position: fixed;
   margin-bottom: 2rem;
   @include single-element;
   background-color: $primary-color;
@@ -13,13 +17,25 @@
     flex-wrap: wrap;
     align-items: center;
     font-size: 1rem;
-    padding: 1rem 2rem;
+    padding: 1rem 0;
+    justify-content: center;
     .title {
       text-transform: uppercase;
     }
     li {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: center;
       font-weight: 300;
-      margin: 0 2rem;
+      margin: .5rem 1rem;
+      min-width: 5rem;
+      span {
+        padding: 0 4px;
+        button {
+          margin-top: .5rem;
+        }
+      }
       a {
         color: #FFF;
         text-decoration: none;
@@ -27,6 +43,9 @@
         &:hover {
           color: $primary-color-dark;
         }
+      }
+      button {
+        margin: 0 1rem;
       }
       input {
         border: 1px solid #e9e9e9;
@@ -53,8 +72,12 @@
       padding: 4px 8px;
       background-color: $primary-color-light;
       box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
-      &:disabled {
+      &:hover {
         background-color: $primary-color-dark;
+        cursor: pointer;
+      }
+      &:disabled {
+        display: none;
       }
     }
   }
@@ -65,4 +88,14 @@ h1 {
   padding: 1rem;
   border-bottom: 1px solid #d0d0d0;
   margin: 1rem;
+}
+@media (max-width: 1000px) {
+  .encourage-desktop {
+    display: none;
+  }
+}
+@media (min-width: 1000px) {
+  .encourage-mobile {
+    display: none;
+  }
 }
