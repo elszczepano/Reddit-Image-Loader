@@ -1,27 +1,37 @@
-# redditjson
+# Reddit Photo Loader
 
-> RedditJSON
+This app displays photos from any subreddit. 
+All you need is a name of subreddit,
+hit enter and here you go!
 
-## Build Setup
+##  Installation
 
-``` bash
-# install dependencies
-npm install
+Download or clone this repository and then
 
-# serve with hot reload at localhost:8080
-npm run dev
+Install dependencies
 
-# build for production with minification
-npm run build
+    npm install
 
-# build for production and view the bundle analyzer report
-npm run build --report
+Serve with hot reload at localhost:8080
 
-# run unit tests
-npm run unit
+    npm run dev
 
-# run all tests
-npm test
-```
+Build for production with minification
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+    npm run build
+
+Build for production and view the bundle analyzer report
+
+    npm run build --report
+
+Run unit tests
+
+    npm run unit
+
+Run all tests
+
+    npm test
+
+##
+
+*Created by Dominik Szczepaniak*
