@@ -1,0 +1,30 @@
+{
+  "short_name": "Reddit Image Loader",
+  "name": "Dominik Szczepaniak",
+  "icons": [
+    {
+      "src": "/static/icon.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/icon.png",
+      "sizes": "256x256",
+      "type": "image/jpg"
+    },
+    {
+      "src": "/static/icon.png",
+      "sizes": "512x512",
+      "type": "image/jpg"
+    }
+  ],
+  "start_url": "/?utm_source=homescreen",
+  "background_color": "#fff",
+  "theme_color": "#009688",
+  "display": "fullscreen"
+}

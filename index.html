@@ -1,11 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json"/>
+    <meta name="theme-color" content="#009688"/>
     <title>redditJSON</title>
   </head>
   <body>
     <div id="app"></div>
+    <noscript>Enable Javascript to start!</noscript>
   </body>
+  <script>
+      const PATH = '/service-worker.js';
+
+      let isServiceWorkersSupport = ('serviceWorker' in navigator);
+
+      if (isServiceWorkersSupport) {
+          console.log('Will service worker register?');
+          navigator.serviceWorker.register(PATH).then(function () {
+              console.log("Yes it did.");
+          }).catch(function (err) {
+              console.log("No it didn't. This happened: ", err)
+          });
+      }
+  </script>
 </html>
