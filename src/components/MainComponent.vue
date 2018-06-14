@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="container">
-      <headroom speed="500">
+      <headroom :speed="speed">
           <header>
               <div class="top-bar-menu">
                   <ul>
@@ -36,6 +36,7 @@ export default {
   data () {
     return {
       pictures: [],
+      speed: 500,
       subreddit: '',
       error: '',
       count: 0,
