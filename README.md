@@ -6,6 +6,8 @@ hit enter and here you go!
 
 Partly **.gif** support
 
+## Live demo - [HERE](http://redditjsondemo.ct8.pl/)
+
 ##  Installation
 
 Download or clone this repository and then
@@ -36,4 +38,4 @@ Run all tests
 
 ##
 
-*Created by Dominik Szczepaniak*
+*Created by [Dominik Szczepaniak](http://devszczepaniak.pl/)*
