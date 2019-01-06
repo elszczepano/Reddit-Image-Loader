@@ -32,11 +32,14 @@
     box-sizing: border-box;
     ul {
       list-style: none;
-      li:before {
-        font-family: 'FontAwesome';
-        content: '\f004';
-        margin:0 5px 0 -15px;
-        color: $primary-color;
+      li {
+        cursor: pointer;
+        &:before {
+          font-family: 'FontAwesome';
+          content: '\f004';
+          margin:0 5px 0 -15px;
+          color: $primary-color;
+        }
       }
     }
     p {

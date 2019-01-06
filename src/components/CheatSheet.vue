@@ -4,16 +4,7 @@
       <div class="cheatsheet-content">
         <h2>Popular subreddits:</h2>
         <ul>
-          <li>funny</li>
-          <li>pics</li>
-          <li>aww</li>
-          <li>food</li>
-          <li>gifs</li>
-          <li>earthporn</li>
-          <li>space</li>
-          <li>creepy</li>
-          <li>memes</li>
-          <li>travel</li>
+          <li v-for="subreddit in subreddits" @click="$emit('copy', subreddit)">{{subreddit}}</li>
         </ul>
         <p>Find more <a href="http://redditlist.com/" target="_blank">there</a></p>
       </div>
@@ -24,10 +15,27 @@
     export default {
       data () {
         return {
-          isActive: false
+          isActive: false,
+          subreddits: [
+            'funny',
+            'pics',
+            'aww',
+            'food',
+            'gifs',
+            'earthporn',
+            'space',
+            'creepy',
+            'memes',
+            'travel'
+          ]
         }
       },
-      name: 'CheatSheet'
+      name: 'CheatSheet',
+      methods: {
+        getValue (value) {
+
+        }
+      }
     }
 </script>
 

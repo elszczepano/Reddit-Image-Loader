@@ -25,7 +25,7 @@
         </transition>
     </div>
     <error-display v-if="showError" :errorValue="error" @close="showError = false" />
-    <cheat-sheet/>
+    <cheat-sheet @copy="copyValue"/>
   </div>
 </template>
 
@@ -54,6 +54,10 @@ export default {
     headroom
   },
   methods: {
+    copyValue (value) {
+      this.subreddit = value
+      this.getURL(value)
+    },
     check_format (url) {
       if (url.slice(url.length - 4, url.length - 3) === '.') return true
       return false
