@@ -18,18 +18,20 @@
               </div>
           </header>
       </headroom>
-    <h1>Your pictures <span class="fa fa-picture-o" aria-hidden="true"></span></h1>
+    <h1>Your pictures<span class="fa fa-picture-o" aria-hidden="true"></span></h1>
     <div class="photo-container">
         <transition name="slide-fade" v-for="picture in pictures" :key="picture.url">
             <img :src="picture" class="photo">
         </transition>
     </div>
     <error-display v-if="showError" :errorValue="error" @close="showError = false" />
+    <cheat-sheet/>
   </div>
 </template>
 
 <script>
 import ErrorDisplay from './ErrorDisplay.vue'
+import CheatSheet from './CheatSheet.vue'
 import { headroom } from 'vue-headroom'
 import API from '../api'
 export default {
@@ -48,6 +50,7 @@ export default {
   name: 'MainComponent',
   components: {
     ErrorDisplay,
+    CheatSheet,
     headroom
   },
   methods: {
