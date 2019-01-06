@@ -59,8 +59,7 @@ export default {
       this.getURL(value)
     },
     check_format (url) {
-      if (url.slice(url.length - 4, url.length - 3) === '.') return true
-      return false
+      return (url.slice(url.length - 4, url.length - 3) === '.')
     },
     sendRequest (url) {
       API.get(url)
