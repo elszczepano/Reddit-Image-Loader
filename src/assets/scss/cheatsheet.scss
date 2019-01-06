@@ -2,13 +2,14 @@
 @import "mixins";
 
 .cheatsheet-container {
+  z-index: 9999999;
   position: fixed;
   right: 40px;
   max-width: 300px;
   .cheatsheet-icon {
     position: relative;
     left: 70%;
-    top: 2px;
+    top: 1px;
     max-width: 35px;
     padding: 8px;
     color: #fff;

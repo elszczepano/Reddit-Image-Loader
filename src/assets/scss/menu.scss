@@ -85,6 +85,9 @@ h1 {
   border-bottom: 1px solid #d0d0d0;
   margin: 1rem;
 }
+.headroom {
+  z-index: initial !important;
+}
 @media (max-width: 1000px) {
   .encourage-desktop {
     display: none;
