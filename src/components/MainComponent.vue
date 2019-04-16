@@ -58,8 +58,8 @@ export default {
       this.subreddit = value
       this.getURL(value)
     },
-    check_format (url) {
-      return (url.slice(url.length - 4, url.length - 3) === '.')
+    checkFormat (url) {
+      return url.slice(url.length - 4, url.length - 3) === '.'
     },
     sendRequest (url) {
       API.get(url)
@@ -70,7 +70,7 @@ export default {
           })
           .then(pictures => {
             pictures.forEach((key) => {
-              if (this.check_format(key.data.url)) this.pictures.push(key.data.url)
+              if (this.checkFormat(key.data.url)) this.pictures.push(key.data.url)
             })
           })
       .catch(error => {
@@ -87,9 +87,8 @@ export default {
       let url = ''
       switch (param) {
         case 'prev':
-          if (this.count % 5 === 0) {
-            this.count += 1
-          } else this.count -= 25
+          if (this.count % 5 === 0) this.count++
+          else this.count -= 25
           url = `https://www.reddit.com/r/${this.subreddit}.json?count=${this.count}&before=${this.before}`
           break
         case 'next':
