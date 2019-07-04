@@ -17,7 +17,7 @@
     "font-awesome": "^4.7.0",
     "vue": "^2.6.10",
     "vue-headroom": "^0.10.1",
-    "vue-router": "^3.0.6"
+    "vue-router": "^3.0.7"
   },
   "devDependencies": {
     "autoprefixer": "^9.6.0",
