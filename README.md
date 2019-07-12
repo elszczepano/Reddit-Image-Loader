@@ -28,14 +28,6 @@ Build for production and view the bundle analyzer report
 
     npm run build --report
 
-Run unit tests
-
-    npm run unit
-
-Run all tests
-
-    npm test
-
 ##
 
 *Created by [Dominik Szczepaniak](http://devszczepaniak.pl/)*
