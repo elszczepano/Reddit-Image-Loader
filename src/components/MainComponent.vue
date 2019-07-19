@@ -1,31 +1,93 @@
 <template lang="html">
   <div class="container">
-      <headroom :speed="speed">
-          <header>
-              <div class="top-bar-menu">
-                  <ul>
-                      <li class="title"><a href="">Reddit image loader <span class="fa fa-reddit-alien" aria-hidden="true"></span></a></li>
-                      <li>https://www.reddit.com/r/
-                          <input v-model="subreddit" type="text" id='subreddit' placeholder="subreddit-name" @keyup.enter="getURL">
-                          <span class="encourage-desktop"> and hit ENTER!</span>
-                          <span class="encourage-mobile"> and <button @click="getURL" class="nav-pill">SEARCH</button></span>
-                      </li>
-                      <li>
-                          <button @click="getURL('prev')" :disabled="!this.before" class="nav-pill"><span class="fa fa-arrow-left" aria-hidden="true"></span> Prev</button>
-                          <button @click="getURL('next')" :disabled="!this.after" class="nav-pill">Next <span class="fa fa-arrow-right" aria-hidden="true"></span></button>
-                      </li>
-                  </ul>
-              </div>
-          </header>
-      </headroom>
-    <h1>Your pictures<span class="fa fa-picture-o" aria-hidden="true"></span></h1>
+    <headroom :speed="speed">
+      <header>
+        <div class="top-bar-menu">
+          <ul>
+            <li class="title">
+              <a href="#">
+                Reddit image loader
+                <span
+                  class="fa fa-reddit-alien"
+                  aria-hidden="true"
+                />
+              </a>
+            </li>
+            <li>
+              https://www.reddit.com/r/
+              <input
+                id="subreddit"
+                v-model="subreddit"
+                type="text"
+                placeholder="subreddit-name"
+                @keyup.enter="getURL"
+              >
+              <span class="encourage-desktop"> and hit ENTER!</span>
+              <span
+                class="encourage-mobile"
+              >
+                and
+                <button
+                  class="nav-pill"
+                  @click="getURL"
+                >
+                  SEARCH
+                </button>
+              </span>
+            </li>
+            <li>
+              <button
+                class="nav-pill"
+                :disabled="!before"
+                @click="getURL('prev')"
+              >
+                <span
+                  class="fa fa-arrow-left"
+                  aria-hidden="true"
+                />
+                Prev
+              </button>
+              <button
+                class="nav-pill"
+                :disabled="!after"
+                @click="getURL('next')"
+              >
+                Next
+                <span
+                  class="fa fa-arrow-right"
+                  aria-hidden="true"
+                />
+              </button>
+            </li>
+          </ul>
+        </div>
+      </header>
+    </headroom>
+    <h1>
+      Your pictures
+      <span
+        class="fa fa-picture-o"
+        aria-hidden="true"
+      />
+    </h1>
     <div class="photo-container">
-        <transition name="slide-fade" v-for="picture in pictures" :key="picture.url">
-            <img :src="picture" class="photo">
-        </transition>
+      <transition
+        v-for="picture in pictures"
+        :key="picture.url"
+        name="slide-fade"
+      >
+        <img
+          :src="picture"
+          class="photo"
+        >
+      </transition>
     </div>
-    <error-display v-if="showError" :errorValue="error" @close="showError = false" />
-    <cheat-sheet @copy="copyValue"/>
+    <error-display
+      v-if="showError"
+      :error-value="error"
+      @close="showError = false"
+    />
+    <cheat-sheet @copy="copyValue" />
   </div>
 </template>
 
@@ -35,6 +97,12 @@ import CheatSheet from './CheatSheet.vue'
 import { headroom } from 'vue-headroom'
 import API from '../api'
 export default {
+  name: 'MainComponent',
+  components: {
+    ErrorDisplay,
+    CheatSheet,
+    headroom
+  },
   data () {
     return {
       pictures: [],
@@ -46,12 +114,6 @@ export default {
       after: false,
       before: false
     }
-  },
-  name: 'MainComponent',
-  components: {
-    ErrorDisplay,
-    CheatSheet,
-    headroom
   },
   methods: {
     copyValue (value) {
