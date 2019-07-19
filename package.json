@@ -1,6 +1,6 @@
 {
   "name": "redditjson",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "RedditJSON",
   "author": "Dominik Szczepaniak <szczepaniak.dominik98@gmail.com>",
   "private": false,
