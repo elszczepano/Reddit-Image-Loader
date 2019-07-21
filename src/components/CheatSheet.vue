@@ -1,7 +1,7 @@
 <template lang="html">
   <div
-    class="cheatsheet-container"
     :class="[isActive ? 'active' : 'inactive']"
+    class="cheatsheet-container"
     @click="isActive = !isActive"
   >
     <div class="cheatsheet-icon">

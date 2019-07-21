@@ -28,8 +28,16 @@
 export default {
   name: 'ErrorDisplay',
   props: {
-    showError: Boolean,
-    errorValue: Boolean
+    showError: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    errorValue: {
+      type: String,
+      required: false,
+      default: ''
+    }
   },
 }
 </script>

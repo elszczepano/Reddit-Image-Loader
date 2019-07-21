@@ -37,8 +37,8 @@
             </li>
             <li>
               <button
-                class="nav-pill"
                 :disabled="!before"
+                class="nav-pill"
                 @click="getURL('prev')"
               >
                 <span
@@ -48,8 +48,8 @@
                 Prev
               </button>
               <button
-                class="nav-pill"
                 :disabled="!after"
+                class="nav-pill"
                 @click="getURL('next')"
               >
                 Next
