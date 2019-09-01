@@ -11,6 +11,11 @@ export default new Router({
       path: '/',
       name: 'MainComponent',
       component: MainComponent
-    }
+    },
+    {
+      path: 'cheatsheet',
+      name: 'CheatSheetPage',
+      component: MainComponent
+    },
   ]
-})
+});
