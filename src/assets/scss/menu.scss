@@ -3,7 +3,7 @@
 
 .top-bar-menu {
   margin-bottom: 2rem;
-  @include single-element;
+  @include single-picture-element;
   background-color: $primary-color;
   color: #FFF;
   ul {
@@ -78,7 +78,7 @@
     }
   }
 }
-h1 {
+.photo-heading {
   color: #d0d0d0;
   font-weight: 300;
   padding: 1rem;
@@ -92,7 +92,7 @@ h1 {
   .encourage-desktop {
     display: none;
   }
-  h1 {
+  .photo-heading {
     margin-top: 2rem;
   }
 }

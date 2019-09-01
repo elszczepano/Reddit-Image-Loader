@@ -1,12 +1,12 @@
 @import "variables";
 @import "mixins";
 
-.cheatsheetwidget-container {
+.widget__container {
   z-index: 9999999;
   position: fixed;
   right: 40px;
   max-width: 300px;
-  .cheatsheetwidget-icon {
+  .widget-icon__container {
     position: relative;
     left: 70%;
     top: 1px;
@@ -21,19 +21,19 @@
     &:hover {
       transform: scale(1.1);
     }
-    i {
+    .widget-icon {
       font-size: 2.5rem;
     }
   }
-  .cheatsheetwidget-content {
+  .widget-content {
     background-color: #fff;
     border: 5px solid $primary-color;
     border-radius: 5px;
     padding: 10px;
     box-sizing: border-box;
-    ul {
+    .widget-content__list {
       list-style: none;
-      li {
+      .widget-content__list-item {
         cursor: pointer;
         &:before {
           font-family: 'FontAwesome';
@@ -47,24 +47,23 @@
         }
       }
     }
-    p {
+    .widget-footer {
       text-align: right;
-      a {
+      .widget-footer__link {
         color: #44CCEE;
         font-weight: bold;
         text-decoration: none;
       }
     }
-
   }
 }
-.active {
+.widget--active {
   animation-name: showSheet;
   animation-duration: .7s;
   bottom: 50px;
 }
-.inactive {
-  bottom: -378px;
+.widget--inactive {
+  bottom: -361px;
   transition: 0.5s all;
 }
 @keyframes showSheet {

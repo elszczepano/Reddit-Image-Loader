@@ -1,7 +1,7 @@
 {
-  "name": "redditjson",
+  "name": "reddit-image-loader",
   "version": "1.2.0",
-  "description": "RedditJSON",
+  "description": "Reddit image loader",
   "author": "Dominik Szczepaniak <szczepaniak.dominik98@gmail.com>",
   "private": false,
   "scripts": {

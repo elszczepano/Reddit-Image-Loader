@@ -2,24 +2,14 @@
   <transition name="slide-fade">
     <div class="error-box">
       <header class="error-box-header">
-        <span>Notice <span
-          class="fa fa-exclamation-triangle"
-          aria-hidden="true"
-        />
-        </span>
+        <span>Notice <span class="fa fa-exclamation-triangle" aria-hidden="true"/></span>
       </header>
       <div class="error-box-body">
         <p>{{ errorValue }}</p>
       </div>
       <hr>
       <footer class="error-box-footer">
-        <button
-          @click="$emit('close')"
-          type="submit"
-          name="button"
-        >
-          close
-        </button>
+        <button @click="$emit('close')" type="submit" name="button">close</button>
       </footer>
     </div>
   </transition>

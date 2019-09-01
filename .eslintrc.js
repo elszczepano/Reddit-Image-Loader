@@ -5,7 +5,6 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'ckeditor5',
-    'plugin:eslint-plugin-vue/recommended',
   ],
   parser: 'vue-eslint-parser',
   plugins: [

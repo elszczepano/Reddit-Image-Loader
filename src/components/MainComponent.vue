@@ -4,96 +4,37 @@
       <header>
         <div class="top-bar-menu">
           <ul>
-            <li class="title">
-              <a href="#">
-                Reddit image loader
-                <span
-                  class="fa fa-reddit-alien"
-                  aria-hidden="true"
-                />
-              </a>
-            </li>
-            <li>
-              https://www.reddit.com/r/
-              <input
-                v-model="subreddit"
-                @keyup.enter="createRequestURL"
-                id="subreddit"
-                type="text"
-                placeholder="subreddit-name"
-              >
+            <li class="title"><a href="#">Reddit image loader<span class="fa fa-reddit-alien" aria-hidden="true"/></a></li>
+            <li>https://www.reddit.com/r/
+              <input v-model="subreddit" @keyup.enter="createRequestURL" id="subreddit" type="text" placeholder="subreddit-name">
               <span class="encourage-desktop"> and hit ENTER!</span>
-              <span
-                class="encourage-mobile"
-              >
-                and
-                <button
-                  @click="createRequestURL"
-                  class="nav-pill"
-                >
-                  SEARCH
-                </button>
-              </span>
+              <span class="encourage-mobile">and<button @click="createRequestURL" class="nav-pill">SEARCH</button></span>
             </li>
             <li>
-              <button
-                :disabled="!before"
-                @click="createRequestURL('prev')"
-                class="nav-pill"
-              >
-                <span
-                  class="fa fa-arrow-left"
-                  aria-hidden="true"
-                />
-                Prev
-              </button>
-              <button
-                :disabled="!after"
-                @click="createRequestURL('next')"
-                class="nav-pill"
-              >
-                Next
-                <span
-                  class="fa fa-arrow-right"
-                  aria-hidden="true"
-                />
+              <button :disabled="!before" @click="createRequestURL('prev')" class="nav-pill">
+                <span class="fa fa-arrow-left" aria-hidden="true"/>Prev</button>
+              <button :disabled="!after" @click="createRequestURL('next')" class="nav-pill">Next
+                <span class="fa fa-arrow-right" aria-hidden="true"/>
               </button>
             </li>
           </ul>
         </div>
       </header>
     </headroom>
-    <h1>
-      Your pictures
-      <span
-        class="fa fa-picture-o"
-        aria-hidden="true"
-      />
-    </h1>
+    <h1 class="photo-heading">Your pictures<span class="fa fa-picture-o" aria-hidden="true"/></h1>
     <div class="photo-container">
-      <transition
-        v-for="picture in pictures"
-        :key="picture.url"
-        name="slide-fade"
-      >
-        <img
-          :src="picture"
-          class="photo"
-        >
+      <transition v-for="picture in pictures" :key="picture.url" name="slide-fade">
+        <img :src="picture" class="photo">
       </transition>
     </div>
-    <error-display
-      v-if="showError"
-      :error-value="error"
-      @close="showError = false"
-    />
-    <cheat-sheet-widget @copy="getSubreddit" />
+    <error-display v-if="showError" :error-value="error" @close="showError = false"/>
+    <widget @copy="getSubreddit"/>
   </div>
 </template>
 
 <script>
 import ErrorDisplay from './ErrorDisplay.vue';
-import CheatSheetWidget from './CheatSheetWidget.vue';
+import Widget from './Widget.vue';
 import { headroom } from 'vue-headroom';
 import API from '../api';
 
@@ -101,7 +42,7 @@ export default {
 	name: 'MainComponent',
 	components: {
 		ErrorDisplay,
-		CheatSheetWidget,
+		Widget,
 		headroom
 	},
 	data() {
@@ -112,8 +53,8 @@ export default {
 			error: '',
 			count: 0,
 			showError: false,
-			after: false,
-			before: false
+			after: null,
+			before: null
 		};
 	},
 	methods: {
@@ -141,8 +82,8 @@ export default {
 				.catch( error => {
 					this.error = error.message;
 					this.showError = true;
-					this.before = false;
-					this.after = false;
+					this.before = null;
+					this.after = null;
 				} );
 		},
 		createRequestURL( param ) {

@@ -6,7 +6,7 @@
   left:3%;
   z-index: 9999;
   width: 20rem;
-  @include single-element;
+  @include single-picture-element;
   background-color: #FFF;
   .error-box-header {
     background-color: $error-color;
