@@ -14,9 +14,9 @@
       <hr>
       <footer class="error-box-footer">
         <button
+          @click="$emit('close')"
           type="submit"
           name="button"
-          @click="$emit('close')"
         >
           close
         </button>
@@ -25,21 +25,21 @@
   </transition>
 </template>
 <script>
-  export default {
-    name: 'ErrorDisplay',
-    props: {
-      showError: {
-        type: Boolean,
-        required: false,
-        default: false
-      },
-      errorValue: {
-        type: String,
-        required: false,
-        default: ''
-      }
-    },
-  };
+export default {
+	name: 'ErrorDisplay',
+	props: {
+		showError: {
+			type: Boolean,
+			required: false,
+			default: false
+		},
+		errorValue: {
+			type: String,
+			required: false,
+			default: ''
+		}
+	},
+};
 </script>
 
 <style lang="scss" src="../assets/scss/style.scss">

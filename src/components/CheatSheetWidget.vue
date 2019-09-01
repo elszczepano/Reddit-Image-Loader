@@ -1,8 +1,8 @@
 <template lang="html">
   <div
     :class="[isActive ? 'active' : 'inactive']"
-    class="cheatsheetwidget-container"
     @click="isActive = !isActive"
+    class="cheatsheetwidget-container"
   >
     <div class="cheatsheetwidget-icon">
       <i
@@ -35,26 +35,17 @@
 </template>
 
 <script>
-    export default {
-      name: 'CheatSheetWidget',
-      data() {
-        return {
-          isActive: false,
-          subreddits: [
-            'funny',
-            'pics',
-            'aww',
-            'food',
-            'gifs',
-            'earthporn',
-            'space',
-            'creepy',
-            'memes',
-            'travel'
-          ]
-        };
-      }
-    };
+import { cheatSheetShort } from '../utils/cheatsheet';
+
+export default {
+	name: 'CheatSheetWidget',
+	data() {
+		return {
+			isActive: false,
+			subreddits: cheatSheetShort
+		};
+	}
+};
 </script>
 
 <style lang="scss" src="../assets/scss/style.scss">
