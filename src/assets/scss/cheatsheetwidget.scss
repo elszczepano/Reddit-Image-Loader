@@ -1,12 +1,12 @@
 @import "variables";
 @import "mixins";
 
-.cheatsheet-container {
+.cheatsheetwidget-container {
   z-index: 9999999;
   position: fixed;
   right: 40px;
   max-width: 300px;
-  .cheatsheet-icon {
+  .cheatsheetwidget-icon {
     position: relative;
     left: 70%;
     top: 1px;
@@ -25,7 +25,7 @@
       font-size: 2.5rem;
     }
   }
-  .cheatsheet-content {
+  .cheatsheetwidget-content {
     background-color: #fff;
     border: 5px solid $primary-color;
     border-radius: 5px;

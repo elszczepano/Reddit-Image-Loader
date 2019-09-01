@@ -1,16 +1,16 @@
 <template lang="html">
   <div
     :class="[isActive ? 'active' : 'inactive']"
-    class="cheatsheet-container"
+    class="cheatsheetwidget-container"
     @click="isActive = !isActive"
   >
-    <div class="cheatsheet-icon">
+    <div class="cheatsheetwidget-icon">
       <i
         class="fa fa-file-text-o"
         aria-hidden="true"
       />
     </div>
-    <div class="cheatsheet-content">
+    <div class="cheatsheetwidget-content">
       <h2>Popular subreddits:</h2>
       <ul>
         <li
@@ -36,8 +36,8 @@
 
 <script>
     export default {
-      name: 'CheatSheet',
-      data () {
+      name: 'CheatSheetWidget',
+      data() {
         return {
           isActive: false,
           subreddits: [

@@ -87,13 +87,13 @@
       :error-value="error"
       @close="showError = false"
     />
-    <cheat-sheet @copy="copyValue" />
+    <cheat-sheet-widget @copy="copyValue" />
   </div>
 </template>
 
 <script>
 import ErrorDisplay from './ErrorDisplay.vue';
-import CheatSheet from './CheatSheet.vue';
+import CheatSheetWidget from './CheatSheetWidget.vue';
 import { headroom } from 'vue-headroom';
 import API from '../api';
 
@@ -101,10 +101,10 @@ export default {
   name: 'MainComponent',
   components: {
     ErrorDisplay,
-    CheatSheet,
+    CheatSheetWidget,
     headroom
   },
-  data () {
+  data() {
     return {
       pictures: [],
       speed: 500,
