@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="top-bar-menu">
+  <div class="bar-menu">
     <h1>Cheatsheet</h1>
   </div>
 </template>

@@ -1,12 +1,12 @@
 @import "variables";
 @import "mixins";
 
-.top-bar-menu {
+.bar-menu {
   margin-bottom: 2rem;
   @include single-picture-element;
   background-color: $primary-color;
   color: #FFF;
-  ul {
+  .bar-menu__list {
     margin: 0;
     list-style-type: none;
     display: flex;
@@ -15,10 +15,10 @@
     font-size: 1rem;
     padding: 1rem 0;
     justify-content: center;
-    .title {
+    .bar-menu__list__item.title {
       text-transform: uppercase;
     }
-    li {
+    .bar-menu__list__item {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
@@ -28,9 +28,6 @@
       min-width: 5rem;
       span {
         padding: 0 4px;
-        button {
-          margin-top: .5rem;
-        }
       }
       a {
         color: #FFF;
@@ -41,13 +38,13 @@
         }
       }
       button {
-        margin: 0 1rem;
+        margin: 0 .4rem;
       }
       input {
         border: 1px solid #e9e9e9;
-        border-radius: 1rem;
+        border-radius: 5px;
         font-size: 1rem;
-        padding: 0.2rem 0;
+        padding: 2px 6px;
         outline: none;
         user-select: none;
         &::selection {
@@ -67,7 +64,7 @@
       font-size: 0.875rem;
       padding: 4px 8px;
       background-color: $primary-color-light;
-      box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
       &:hover {
         background-color: $primary-color-dark;
         cursor: pointer;
@@ -78,31 +75,21 @@
     }
   }
 }
-.photo-heading {
-  color: #d0d0d0;
-  font-weight: 300;
-  padding: 1rem;
-  border-bottom: 1px solid #d0d0d0;
-  margin: 1rem;
-}
+
 .headroom {
   z-index: initial !important;
 }
+
+.encourage-mobile {
+  display: none;
+}
+
 @media (max-width: 1000px) {
   .encourage-desktop {
     display: none;
   }
-  .photo-heading {
-    margin-top: 2rem;
-  }
-}
-@media (max-width: 800px) {
-  .encourage-desktop {
-    display: none;
-  }
-}
-@media (min-width: 1000px) {
+
   .encourage-mobile {
-    display: none;
+    display: block;
   }
 }

@@ -1,30 +1,31 @@
 <template lang="html">
   <div class="container">
     <headroom :speed="speed">
-      <header>
-        <div class="top-bar-menu">
-          <ul>
-            <li class="title"><a href="#">Reddit image loader<span class="fa fa-reddit-alien" aria-hidden="true"/></a></li>
-            <li>https://www.reddit.com/r/
-              <input v-model="subreddit" @keyup.enter="createRequestURL" id="subreddit" type="text" placeholder="subreddit-name">
-              <span class="encourage-desktop"> and hit ENTER!</span>
-              <span class="encourage-mobile">and<button @click="createRequestURL" class="nav-pill">SEARCH</button></span>
-            </li>
-            <li>
-              <button :disabled="!before" @click="createRequestURL('prev')" class="nav-pill">
-                <span class="fa fa-arrow-left" aria-hidden="true"/>Prev</button>
-              <button :disabled="!after" @click="createRequestURL('next')" class="nav-pill">Next
-                <span class="fa fa-arrow-right" aria-hidden="true"/>
-              </button>
-            </li>
-          </ul>
-        </div>
+      <header class="bar-menu">
+        <ul class="bar-menu__list">
+          <li class="bar-menu__list__item title">
+            <a href="#">Reddit image loader<span class="fa fa-reddit-alien" aria-hidden="true"/></a>
+          </li>
+          <li class="bar-menu__list__item">https://www.reddit.com/r/
+            <input v-model="subreddit" @keyup.enter="createRequestURL" id="subreddit" type="text" placeholder="subreddit-name">
+            <span class="encourage-desktop"> and hit ENTER!</span>
+            <span class="encourage-mobile">and<button @click="createRequestURL" class="nav-pill">SEARCH</button></span>
+          </li>
+          <li class="bar-menu__list__item">
+            <button :disabled="!before" @click="createRequestURL('prev')" class="nav-pill">
+              <span class="fa fa-arrow-left" aria-hidden="true"/>Prev
+            </button>
+            <button :disabled="!after" @click="createRequestURL('next')" class="nav-pill">
+              Next<span class="fa fa-arrow-right" aria-hidden="true"/>
+            </button>
+          </li>
+        </ul>
       </header>
     </headroom>
-    <h1 class="photo-heading">Your pictures<span class="fa fa-picture-o" aria-hidden="true"/></h1>
-    <div class="photo-container">
+    <h1 class="photos-heading">Your pictures<span class="fa fa-picture-o" aria-hidden="true"/></h1>
+    <div class="photos-container">
       <transition v-for="picture in pictures" :key="picture.url" name="slide-fade">
-        <img :src="picture" class="photo">
+        <img :src="picture" class="photos-container__photo">
       </transition>
     </div>
     <error-display v-if="showError" :error-value="error" @close="showError = false"/>

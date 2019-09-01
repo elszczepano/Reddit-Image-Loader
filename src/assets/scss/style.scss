@@ -1,12 +1,14 @@
 @import "variables";
 @import "mixins";
 @import "menu";
-@import "images";
-@import "notice";
+@import "photos";
+@import "notification";
 @import "widget";
+
 * {
   font-family: 'Noto Sans', sans-serif;
 }
+
 .container {
   position: relative;
 }

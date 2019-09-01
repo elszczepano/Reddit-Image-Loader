@@ -57,15 +57,18 @@
     }
   }
 }
+
 .widget--active {
   animation-name: showSheet;
   animation-duration: .7s;
   bottom: 50px;
 }
+
 .widget--inactive {
   bottom: -361px;
   transition: 0.5s all;
 }
+
 @keyframes showSheet {
   0% {bottom: -378px;}
   50% {bottom: 100px;}

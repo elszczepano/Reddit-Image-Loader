@@ -1,32 +1,33 @@
 @import "variables";
 @import "mixins";
-.error-box {
+
+.notification-box {
+  @include single-picture-element;
   position: fixed;
   bottom: 5%;
   left:3%;
   z-index: 9999;
   width: 20rem;
-  @include single-picture-element;
   background-color: #FFF;
-  .error-box-header {
+  .notification-box__heading {
     background-color: $error-color;
     color: #FFF;
     padding: .2rem 1rem;
   }
-  .error-box-body p {
+  .notification-content .notification-content__text {
       margin: 0;
       padding: .5rem;
   }
-  hr {
+  .notification-box__breaking-line {
     border: 0;
     height: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   }
-  .error-box-footer {
+  .notification-footer {
     display: flex;
     justify-content: flex-end;
-    button {
+    .notification-footer__button {
       background-color: $error-color;
       transition: .3s background-color;
       border: none;
@@ -42,8 +43,9 @@
     }
   }
 }
+
 @media (max-width: 600px) {
-  .error-box {
+  .notification-box {
     width: 10rem;
   }
 }
