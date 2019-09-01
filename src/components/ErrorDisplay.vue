@@ -25,21 +25,21 @@
   </transition>
 </template>
 <script>
-export default {
-  name: 'ErrorDisplay',
-  props: {
-    showError: {
-      type: Boolean,
-      required: false,
-      default: false
+  export default {
+    name: 'ErrorDisplay',
+    props: {
+      showError: {
+        type: Boolean,
+        required: false,
+        default: false
+      },
+      errorValue: {
+        type: String,
+        required: false,
+        default: ''
+      }
     },
-    errorValue: {
-      type: String,
-      required: false,
-      default: ''
-    }
-  },
-}
+  };
 </script>
 
 <style lang="scss" src="../assets/scss/style.scss">

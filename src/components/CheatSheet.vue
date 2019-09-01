@@ -52,9 +52,9 @@
             'memes',
             'travel'
           ]
-        }
+        };
       }
-    }
+    };
 </script>
 
 <style lang="scss" src="../assets/scss/style.scss">

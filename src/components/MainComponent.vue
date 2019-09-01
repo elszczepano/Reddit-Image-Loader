@@ -92,10 +92,11 @@
 </template>
 
 <script>
-import ErrorDisplay from './ErrorDisplay.vue'
-import CheatSheet from './CheatSheet.vue'
-import { headroom } from 'vue-headroom'
-import API from '../api'
+import ErrorDisplay from './ErrorDisplay.vue';
+import CheatSheet from './CheatSheet.vue';
+import { headroom } from 'vue-headroom';
+import API from '../api';
+
 export default {
   name: 'MainComponent',
   components: {
@@ -113,57 +114,63 @@ export default {
       showError: false,
       after: false,
       before: false
-    }
+    };
   },
   methods: {
     copyValue (value) {
-      this.subreddit = value
-      this.getURL(value)
+      this.subreddit = value;
+      this.getURL(value);
     },
     checkFormat (url) {
-      return url.slice(url.length - 4, url.length - 3) === '.'
+      return url.slice(url.length - 4, url.length - 3) === '.';
     },
     sendRequest (url) {
       API.get(url)
           .then(response => {
-            this.before = response.data.data.before
-            this.after = response.data.data.after
-            return response.data.data.children
+            this.before = response.data.data.before;
+            this.after = response.data.data.after;
+            return response.data.data.children;
           })
           .then(pictures => {
             pictures.forEach((key) => {
-              if (this.checkFormat(key.data.url)) this.pictures.push(key.data.url)
-            })
+              if (this.checkFormat(key.data.url)) {
+                  this.pictures.push(key.data.url);
+              }
+            });
           })
       .catch(error => {
-        this.error = error.message
-        this.showError = true
-        this.before = false
-        this.after = false
-      })
+        this.error = error.message;
+        this.showError = true;
+        this.before = false;
+        this.after = false;
+      });
     },
     getURL (param) {
-      this.pictures = []
-      this.error = ''
-      this.showError = false
-      let url = ''
+      this.pictures = [];
+      this.error = '';
+      this.showError = false;
+      let url = '';
       switch (param) {
         case 'prev':
-          if (this.count % 5 === 0) this.count++
-          else this.count -= 25
-          url = `https://www.reddit.com/r/${this.subreddit}.json?count=${this.count}&before=${this.before}`
-          break
+          if (this.count % 5 === 0) {
+              this.count++;
+          }
+          else {
+              this.count -= 25;
+          }
+          url = `https://www.reddit.com/r/${this.subreddit}.json?count=${this.count}&before=${this.before}`;
+          break;
         case 'next':
-          this.count += 25
-          url = `https://www.reddit.com/r/${this.subreddit}.json?count=${this.count}&after=${this.after}`
-          break
+          this.count += 25;
+          url = `https://www.reddit.com/r/${this.subreddit}.json?count=${this.count}&after=${this.after}`;
+          break;
         default:
-          url = `https://www.reddit.com/r/${this.subreddit}.json`
+          url = `https://www.reddit.com/r/${this.subreddit}.json`;
       }
-      this.sendRequest(url)
+      this.sendRequest(url);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" src="../assets/scss/style.scss">
