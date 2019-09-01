@@ -7,7 +7,13 @@
             <a href="#">Reddit image loader<span class="fa fa-reddit-alien" aria-hidden="true"/></a>
           </li>
           <li class="bar-menu__list__item">https://www.reddit.com/r/
-            <input v-model="subreddit" @keyup.enter="createRequestURL" id="subreddit" type="text" placeholder="subreddit-name">
+            <input
+				ref="subredditInput"
+				v-model="subreddit"
+				@keyup.enter="createRequestURL"
+				id="subreddit" type="text"
+				placeholder="subreddit-name"
+			>
             <span class="encourage-desktop"> and hit ENTER!</span>
             <span class="encourage-mobile">and<button @click="createRequestURL" class="nav-pill">SEARCH</button></span>
           </li>
@@ -58,10 +64,21 @@ export default {
 			before: null
 		};
 	},
+	mounted() {
+		this.getSubredditFromURL();
+	},
 	methods: {
-		getSubreddit( value ) {
-			this.subreddit = value;
-			this.getURL( value );
+		getSubredditFromURL() {
+			const query = this.$route.query || {};
+			const subreddit = query.subreddit;
+			if ( subreddit ) {
+				this.getSubreddit( subreddit );
+			}
+		},
+		getSubreddit( subreddit ) {
+			this.$refs.subredditInput.value = subreddit;
+			this.subreddit = subreddit;
+			this.createRequestURL( subreddit );
 		},
 		checkImageFormat( url ) {
 			return url.slice( url.length - 4, url.length - 3 ) === '.';
