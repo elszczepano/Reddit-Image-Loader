@@ -1,95 +1,94 @@
-@import "variables";
-@import "mixins";
+@import 'variables';
+@import 'mixins';
 
 .bar-menu {
-  margin-bottom: 2rem;
-  @include single-picture-element;
-  background-color: $primary-color;
-  color: #FFF;
-  .bar-menu__list {
-    margin: 0;
-    list-style-type: none;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    font-size: 1rem;
-    padding: 1rem 0;
-    justify-content: center;
-    .bar-menu__list__item.title {
-      text-transform: uppercase;
-    }
-    .bar-menu__list__item {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      align-items: center;
-      font-weight: 300;
-      margin: .5rem 1rem;
-      min-width: 5rem;
-      span {
-        padding: 0 4px;
-      }
-      a {
-        color: #FFF;
-        text-decoration: none;
-        transition: .5s color;
-        &:hover {
-          color: $primary-color-dark;
-        }
-      }
-      button {
-        margin: 0 .4rem;
-      }
-      input {
-        border: 1px solid #e9e9e9;
-        border-radius: 5px;
-        font-size: 1rem;
-        padding: 2px 6px;
-        outline: none;
-        user-select: none;
-        &::selection {
-          background-color: $primary-color;
-          color: white;
-        }
-        &::placeholder {
-          color: #d0d0d0;
-        }
-      }
-    }
-    .nav-pill {
-      color: #fff;
-      outline: none;
-      border: none;
-      border-radius: 5px;
-      font-size: 0.875rem;
-      padding: 4px 8px;
-      background-color: $primary-color-light;
-      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
-      &:hover {
-        background-color: $primary-color-dark;
-        cursor: pointer;
-      }
-      &:disabled {
-        display: none;
-      }
-    }
-  }
+	@include single-picture-element;
+	margin-bottom: 2rem;
+  	background-color: $primary-color;
+	color: $primary-white;
+  	.bar-menu__list {
+    	margin: 0;
+    	list-style-type: none;
+    	display: flex;
+    	flex-wrap: wrap;
+    	align-items: center;
+    	font-size: 1rem;
+    	padding: 1rem 0;
+    	justify-content: center;
+		.bar-menu__list__item.title {
+      		text-transform: uppercase;
+    	}
+    	.bar-menu__list__item {
+      		display: flex;
+      		justify-content: center;
+      		flex-wrap: wrap;
+      		align-items: center;
+      		font-weight: 300;
+      		margin: .5rem 1rem;
+      		min-width: 5rem;
+      		span {
+        		padding: 0 4px;
+      		}
+      		a {
+        		color: $primary-white;
+        		text-decoration: none;
+        		transition: .5s color;
+        		&:hover {
+          			color: $primary-color-dark;
+        		}
+      		}
+      		button {
+        		margin: 0 .4rem;
+      		}
+      		input {
+        		border: 1px solid #e9e9e9;
+        		border-radius: $border-radius-default;
+        		font-size: 1rem;
+        		padding: 2px 6px;
+        		outline: none;
+        		user-select: none;
+        		&::selection {
+          			background-color: $primary-color;
+          			color: $primary-white;
+        		}
+        		&::placeholder {
+          			color: #d0d0d0;
+        		}
+      		}
+    	}
+    	.nav-pill {
+			all: unset;
+      		color: $primary-white;
+      		border-radius: $border-radius-default;
+			background-color: $primary-color-light;
+			font-size: 0.875rem;
+      		padding: 4px 8px;
+      		box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
+      		&:hover {
+        		background-color: $primary-color-dark;
+        		cursor: pointer;
+      		}
+      		&:disabled {
+        		display: none;
+      		}
+		}
+ 	}
 }
 
+// Overwrite default headroom styles.
 .headroom {
-  z-index: initial !important;
+  	z-index: initial !important;
 }
 
 .encourage-mobile {
-  display: none;
+  	display: none;
 }
 
 @media (max-width: 1000px) {
-  .encourage-desktop {
-    display: none;
-  }
-
-  .encourage-mobile {
-    display: block;
-  }
+  	.encourage-desktop {
+    	display: none;
+  	}
+  	.encourage-mobile {
+    	display: block;
+  	}
 }
