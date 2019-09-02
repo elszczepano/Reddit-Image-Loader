@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="container">
-    <headroom :speed="speed">
+    <headroom :speed="headroomSpeed">
       <header class="bar-menu">
         <ul class="bar-menu__list">
           <li class="bar-menu__list__item title">
@@ -18,10 +18,10 @@
             <span class="encourage-mobile">and<button @click="createRequestURL" class="nav-pill">SEARCH</button></span>
           </li>
           <li class="bar-menu__list__item">
-            <button :disabled="!before" @click="createRequestURL('prev')" class="nav-pill">
+            <button :disabled="!URLBefore" @click="createRequestURL('prev')" class="nav-pill">
               <span class="fa fa-arrow-left" aria-hidden="true"/>Prev
             </button>
-            <button :disabled="!after" @click="createRequestURL('next')" class="nav-pill">
+            <button :disabled="!URLAfter" @click="createRequestURL('next')" class="nav-pill">
               Next<span class="fa fa-arrow-right" aria-hidden="true"/>
             </button>
           </li>
@@ -40,9 +40,9 @@
 </template>
 
 <script>
+import { headroom } from 'vue-headroom';
 import ErrorDisplay from './ErrorDisplay.vue';
 import Widget from './Widget.vue';
-import { headroom } from 'vue-headroom';
 import API from '../api';
 
 export default {
@@ -54,14 +54,14 @@ export default {
 	},
 	data() {
 		return {
-			pictures: [],
-			speed: 500,
-			subreddit: '',
 			error: '',
-			count: 0,
+			headroomSpeed: 500,
+			pictures: [],
 			showError: false,
-			after: null,
-			before: null
+			subreddit: '',
+			URLAfter: null,
+			URLBefore: null,
+			URLCount: 0
 		};
 	},
 	mounted() {
@@ -86,8 +86,8 @@ export default {
 		sendRequest( url ) {
 			API.get( url )
 				.then( response => {
-					this.before = response.data.data.before;
-					this.after = response.data.data.after;
+					this.URLBefore = response.data.data.before;
+					this.URLAfter = response.data.data.after;
 					return response.data.data.children;
 				} )
 				.then( pictures => {
@@ -100,8 +100,8 @@ export default {
 				.catch( error => {
 					this.error = error.message;
 					this.showError = true;
-					this.before = null;
-					this.after = null;
+					this.URLBefore = null;
+					this.URLAfter = null;
 				} );
 		},
 		createRequestURL( param ) {
@@ -111,17 +111,17 @@ export default {
 			let url = '';
 			switch ( param ) {
 				case 'prev':
-					if ( this.count % 5 === 0 ) {
-						this.count++;
+					if ( this.URLCount % 5 === 0 ) {
+						this.URLCount++;
 					}
 					else {
-						this.count -= 25;
+						this.URLCount -= 25;
 					}
-					url = `https://www.reddit.com/r/${ this.subreddit }.json?count=${ this.count }&before=${ this.before }`;
+					url = `https://www.reddit.com/r/${ this.subreddit }.json?count=${ this.URLCount }&before=${ this.URLBefore }`;
 					break;
 				case 'next':
-					this.count += 25;
-					url = `https://www.reddit.com/r/${ this.subreddit }.json?count=${ this.count }&after=${ this.after }`;
+					this.URLCount += 25;
+					url = `https://www.reddit.com/r/${ this.subreddit }.json?count=${ this.URLCount }&after=${ this.URLAfter }`;
 					break;
 				default:
 					url = `https://www.reddit.com/r/${ this.subreddit }.json`;
