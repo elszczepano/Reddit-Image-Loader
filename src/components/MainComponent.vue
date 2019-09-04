@@ -1,169 +1,138 @@
 <template lang="html">
-  <div class="container">
-    <headroom :speed="speed">
-      <header>
-        <div class="top-bar-menu">
-          <ul>
-            <li class="title">
-              <a href="#">
-                Reddit image loader
-                <span
-                  class="fa fa-reddit-alien"
-                  aria-hidden="true"
-                />
-              </a>
-            </li>
-            <li>
-              https://www.reddit.com/r/
-              <input
-                id="subreddit"
-                v-model="subreddit"
-                type="text"
-                placeholder="subreddit-name"
-                @keyup.enter="getURL"
-              >
-              <span class="encourage-desktop"> and hit ENTER!</span>
-              <span
-                class="encourage-mobile"
-              >
-                and
-                <button
-                  class="nav-pill"
-                  @click="getURL"
-                >
-                  SEARCH
-                </button>
-              </span>
-            </li>
-            <li>
-              <button
-                :disabled="!before"
-                class="nav-pill"
-                @click="getURL('prev')"
-              >
-                <span
-                  class="fa fa-arrow-left"
-                  aria-hidden="true"
-                />
-                Prev
-              </button>
-              <button
-                :disabled="!after"
-                class="nav-pill"
-                @click="getURL('next')"
-              >
-                Next
-                <span
-                  class="fa fa-arrow-right"
-                  aria-hidden="true"
-                />
-              </button>
-            </li>
-          </ul>
-        </div>
-      </header>
-    </headroom>
-    <h1>
-      Your pictures
-      <span
-        class="fa fa-picture-o"
-        aria-hidden="true"
-      />
-    </h1>
-    <div class="photo-container">
-      <transition
-        v-for="picture in pictures"
-        :key="picture.url"
-        name="slide-fade"
-      >
-        <img
-          :src="picture"
-          class="photo"
-        >
-      </transition>
-    </div>
-    <error-display
-      v-if="showError"
-      :error-value="error"
-      @close="showError = false"
-    />
-    <cheat-sheet @copy="copyValue" />
-  </div>
+	<div class="container">
+		<headroom :speed="headroomSpeed">
+			<header class="bar-menu">
+				<ul class="bar-menu__list">
+					<li class="bar-menu__list__item bar-menu__title">
+						<router-link to="/">Reddit Image Loader<span class="fa fa-reddit-alien" aria-hidden="true"/></router-link>
+					</li>
+					<li class="bar-menu__list__item">https://www.reddit.com/r/
+						<input
+							ref="subredditInput"
+							v-model="subreddit"
+							@keyup.enter="createRequestURL"
+							id="subreddit" type="text"
+							placeholder="subreddit-name"
+						>
+						<span class="encourage-desktop"> and hit ENTER!</span>
+						<span class="encourage-mobile">and<button @click="createRequestURL" class="nav-pill nav-pill--search">search</button></span>
+					</li>
+					<li class="bar-menu__list__item">
+						<button :disabled="!URLBefore" @click="createRequestURL( 'prev' )" class="nav-pill">
+							<span class="fa fa-arrow-left" aria-hidden="true"/>Prev
+						</button>
+						<button :disabled="!URLAfter" @click="createRequestURL( 'next' )" class="nav-pill">
+							Next<span class="fa fa-arrow-right" aria-hidden="true"/>
+						</button>
+					</li>
+				</ul>
+			</header>
+		</headroom>
+		<h1 class="photos-heading">Your pictures<span class="fa fa-picture-o" aria-hidden="true"/></h1>
+		<div class="photos-container">
+			<transition v-for="picture in pictures" :key="picture.url" name="slide-fade">
+				<img :src="picture" class="photos-container__photo">
+			</transition>
+		</div>
+		<error-popup v-if="showError" :error-value="errorMessage" @close="showError = false"/>
+		<widget />
+	</div>
 </template>
 
 <script>
-import ErrorDisplay from './ErrorDisplay.vue'
-import CheatSheet from './CheatSheet.vue'
-import { headroom } from 'vue-headroom'
-import API from '../api'
+import { headroom } from 'vue-headroom';
+import ErrorPopup from './ErrorPopup.vue';
+import Widget from './Widget.vue';
+import API from '../api';
+
 export default {
-  name: 'MainComponent',
-  components: {
-    ErrorDisplay,
-    CheatSheet,
-    headroom
-  },
-  data () {
-    return {
-      pictures: [],
-      speed: 500,
-      subreddit: '',
-      error: '',
-      count: 0,
-      showError: false,
-      after: false,
-      before: false
-    }
-  },
-  methods: {
-    copyValue (value) {
-      this.subreddit = value
-      this.getURL(value)
-    },
-    checkFormat (url) {
-      return url.slice(url.length - 4, url.length - 3) === '.'
-    },
-    sendRequest (url) {
-      API.get(url)
-          .then(response => {
-            this.before = response.data.data.before
-            this.after = response.data.data.after
-            return response.data.data.children
-          })
-          .then(pictures => {
-            pictures.forEach((key) => {
-              if (this.checkFormat(key.data.url)) this.pictures.push(key.data.url)
-            })
-          })
-      .catch(error => {
-        this.error = error.message
-        this.showError = true
-        this.before = false
-        this.after = false
-      })
-    },
-    getURL (param) {
-      this.pictures = []
-      this.error = ''
-      this.showError = false
-      let url = ''
-      switch (param) {
-        case 'prev':
-          if (this.count % 5 === 0) this.count++
-          else this.count -= 25
-          url = `https://www.reddit.com/r/${this.subreddit}.json?count=${this.count}&before=${this.before}`
-          break
-        case 'next':
-          this.count += 25
-          url = `https://www.reddit.com/r/${this.subreddit}.json?count=${this.count}&after=${this.after}`
-          break
-        default:
-          url = `https://www.reddit.com/r/${this.subreddit}.json`
-      }
-      this.sendRequest(url)
-    }
-  }
-}
+	name: 'MainComponent',
+	components: {
+		ErrorPopup,
+		Widget,
+		headroom
+	},
+	data() {
+		return {
+			errorMessage: '',
+			headroomSpeed: 500,
+			pictures: [],
+			showError: false,
+			subreddit: '',
+			URLAfter: null,
+			URLBefore: null,
+			URLCount: 0
+		};
+	},
+	mounted() {
+		this.getSubredditFromURL();
+	},
+	watch: {
+		$route() {
+			this.getSubredditFromURL();
+		}
+	},
+	methods: {
+		getSubredditFromURL() {
+			const query = this.$route.query || {};
+			const subreddit = query.subreddit;
+			if ( subreddit ) {
+				this.$refs.subredditInput.value = subreddit;
+				this.subreddit = subreddit;
+				this.createRequestURL( subreddit );
+			}
+		},
+		checkImageFormat( url ) {
+			return url.slice( url.length - 4, url.length - 3 ) === '.';
+		},
+		sendRequest( url ) {
+			API.get( url )
+				.then( response => {
+					this.URLBefore = response.data.data.before;
+					this.URLAfter = response.data.data.after;
+					return response.data.data.children;
+				} )
+				.then( pictures => {
+					pictures.forEach( key => {
+						if ( this.checkImageFormat( key.data.url ) ) {
+							this.pictures.push( key.data.url );
+						}
+					} );
+				} )
+				.catch( error => {
+					this.errorMessage = error.message;
+					this.showError = true;
+					this.URLBefore = null;
+					this.URLAfter = null;
+				} );
+		},
+		createRequestURL( param ) {
+			this.pictures = [];
+			this.errorMessage = '';
+			this.errorMessage = '';
+			this.showError = false;
+			let url = '';
+			switch ( param ) {
+				case 'prev':
+					if ( this.URLCount % 5 === 0 ) {
+						this.URLCount++;
+					}
+					else {
+						this.URLCount -= 25;
+					}
+					url = `https://www.reddit.com/r/${ this.subreddit }.json?count=${ this.URLCount }&before=${ this.URLBefore }`;
+					break;
+				case 'next':
+					this.URLCount += 25;
+					url = `https://www.reddit.com/r/${ this.subreddit }.json?count=${ this.URLCount }&after=${ this.URLAfter }`;
+					break;
+				default:
+					url = `https://www.reddit.com/r/${ this.subreddit }.json`;
+			}
+			this.sendRequest( url );
+		}
+	}
+};
 </script>
 
 <style lang="scss" src="../assets/scss/style.scss">

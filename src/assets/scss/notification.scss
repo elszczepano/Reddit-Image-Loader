@@ -1,0 +1,50 @@
+@import 'variables';
+@import 'mixins';
+
+.notification-box {
+  	@include single-picture-element;
+  	position: fixed;
+  	bottom: 5%;
+  	left: 3%;
+  	z-index: 99;
+  	width: 20rem;
+  	background-color: $primary-white;
+  	.notification-box__heading {
+    	background-color: $primary-red;
+    	color: $primary-white;
+    	padding: .2rem 1rem;
+  	}
+  	.notification-content .notification-content__text {
+      	margin: 0;
+      	padding: .5rem;
+  	}
+  	.notification-box__breaking-line {
+    	border: 0;
+    	height: 0;
+    	border-top: 1px solid rgba( 0, 0, 0, 0.1 );
+    	border-bottom: 1px solid rgba( 255, 255, 255, 0.3 );
+  	}
+  	.notification-footer {
+    	display: flex;
+    	justify-content: flex-end;
+    	.notification-footer__button {
+			all: unset;
+     	 	background-color: $primary-red;
+			color: $primary-white;
+			transition: .3s background-color;
+      		font-size: .9rem;
+      		margin: 0 .5rem .5rem 0;
+      		padding: .2rem .4rem;
+      		cursor: pointer;
+      		&:hover {
+        		background-color: $primary-red-dark;
+      		}
+    	}
+  	}
+}
+
+@media (max-width: 600px) {
+  	.notification-box {
+   		 width: 10rem;
+  	}
+}

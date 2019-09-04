@@ -1,12 +1,15 @@
-@import "variables";
-@import "mixins";
-@import "menu";
-@import "images";
-@import "notice";
-@import "cheatsheet";
+@import 'cheatsheet';
+@import 'mixins';
+@import 'menu';
+@import 'photos';
+@import 'notification';
+@import 'variables';
+@import 'widget';
+
 * {
-  font-family: 'Noto Sans', sans-serif;
+  	font-family: 'Noto Sans', sans-serif;
 }
+
 .container {
-  position: relative;
+  	position: relative;
 }
