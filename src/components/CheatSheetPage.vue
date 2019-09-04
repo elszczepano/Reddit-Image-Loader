@@ -1,12 +1,29 @@
 <template lang="html">
-  <div class="bar-menu">
-    <h1>Cheatsheet</h1>
-  </div>
+	<div class="container">
+		<div class="bar-menu bar-menu--cheatsheet">
+			<a href="#">Reddit image loader<span class="fa fa-reddit-alien" aria-hidden="true"/></a>
+			<h1 class="bar-menu__heading">Cheatsheet</h1>
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th :key="header" v-for="header in Object.keys(subreddits)">{{header}}</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
 </template>
 
 <script>
+import { cheatSheet } from '../utils/cheatsheet';
+
 export default {
-	name: 'CheatSheetPage'
+	name: 'CheatSheetPage',
+	data() {
+		return {
+			subreddits: cheatSheet
+		};
+	}
 };
 </script>
 
