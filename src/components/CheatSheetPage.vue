@@ -1,16 +1,29 @@
 <template lang="html">
 	<div class="container">
-		<div class="bar-menu bar-menu--cheatsheet">
-			<a href="#">Reddit image loader<span class="fa fa-reddit-alien" aria-hidden="true"/></a>
+		<div class="bar-menu bar-menu__cheatsheet">
+			<router-link to="/" class="bar-menu__title">
+				Reddit image loader<span class="fa fa-reddit-alien" aria-hidden="true"/>
+			</router-link>
 			<h1 class="bar-menu__heading">Cheatsheet</h1>
 		</div>
-		<table>
-			<thead>
-				<tr>
-					<th :key="header" v-for="header in Object.keys(subreddits)">{{header}}</th>
+		<div class="cheatsheet-table__wrapper">
+			<table class="cheatsheet-table">
+				<tr :key="header" v-for="header in Object.keys(subreddits)">
+					<th>{{header}}</th>
+					<td>
+						<ul class="cheatsheet-list">
+							<router-link
+								class="cheatsheet-list__item"
+								tag="li"
+								:key="subreddit"
+								:to="{ path: '/', query: { subreddit: subreddit } }"
+								v-for="subreddit in subreddits[header]"
+							>{{subreddit}}</router-link>
+						</ul>
+					</td>
 				</tr>
-			</thead>
-		</table>
+			</table>
+		</div>
 	</div>
 </template>
 

@@ -6,37 +6,27 @@
 	margin-bottom: 2rem;
   	background-color: $primary-color;
 	color: $primary-white;
+	.bar-menu__heading {
+		text-align: center;
+		padding: 1rem 0;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+	}
   	.bar-menu__list {
+		@include display-flex-center;
     	margin: 0;
     	list-style-type: none;
-    	display: flex;
-    	flex-wrap: wrap;
-    	align-items: center;
     	font-size: 1rem;
     	padding: 1rem 0;
-    	justify-content: center;
-		.bar-menu__list__item.title {
+		.bar-menu__list__item.bar-menu__title {
       		text-transform: uppercase;
     	}
     	.bar-menu__list__item {
-      		display: flex;
-      		justify-content: center;
-      		flex-wrap: wrap;
-      		align-items: center;
+			@include logo;
+			@include display-flex-center;
       		font-weight: 300;
       		margin: .5rem 1rem;
       		min-width: 5rem;
-      		span {
-        		padding: 0 4px;
-      		}
-      		a {
-        		color: $primary-white;
-        		text-decoration: none;
-        		transition: .5s color;
-        		&:hover {
-          			color: $primary-color-dark;
-        		}
-      		}
       		button {
         		margin: 0 .4rem;
       		}
@@ -75,6 +65,18 @@
  	}
 }
 
+.bar-menu__cheatsheet {
+	@include logo;
+	@include display-flex-center;
+	position: relative;
+	.bar-menu__title {
+		align-items: center;
+		font-weight: 300;
+		margin: .5rem 1rem;
+		min-width: 5rem;
+	}
+}
+
 // Overwrite default headroom styles.
 .headroom {
   	z-index: initial !important;
@@ -82,6 +84,14 @@
 
 .encourage-mobile {
   	display: none;
+}
+
+@media (min-width: 1000px) {
+	.bar-menu__cheatsheet .bar-menu__title {
+		position: absolute;
+		left: 0;
+		top: 2.5rem;
+	}
 }
 
 @media (max-width: 1000px) {

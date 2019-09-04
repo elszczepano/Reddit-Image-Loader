@@ -3,8 +3,8 @@
 		<headroom :speed="headroomSpeed">
 			<header class="bar-menu">
 				<ul class="bar-menu__list">
-					<li class="bar-menu__list__item title">
-						<a href="#">Reddit image loader<span class="fa fa-reddit-alien" aria-hidden="true"/></a>
+					<li class="bar-menu__list__item bar-menu__title">
+						<router-link to="/">Reddit image loader<span class="fa fa-reddit-alien" aria-hidden="true"/></router-link>
 					</li>
 					<li class="bar-menu__list__item">https://www.reddit.com/r/
 						<input

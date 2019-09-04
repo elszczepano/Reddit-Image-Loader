@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'mixins';
 
 .widget__container {
   	z-index: 99;
@@ -32,17 +33,7 @@
     	.widget-content__list {
       		list-style: none;
       		.widget-content__list-item {
-        		cursor: pointer;
-        		&:before {
-					color: $primary-color;
-					font-family: 'FontAwesome';
-          			content: '\f004';
-          			margin:0 5px 0 -15px;
-				}
-        		&:hover {
-          			color: $primary-color;
-          			font-weight: bold;
-        		}
+        		@include subreddits-list;
       		}
     	}
 		.widget-footer {

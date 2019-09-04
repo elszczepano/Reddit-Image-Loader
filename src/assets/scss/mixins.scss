@@ -4,3 +4,38 @@
   	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   	user-select: none;
 }
+
+@mixin logo {
+	span {
+		padding: 0 4px;
+	}
+	a {
+		color: $primary-white;
+		text-decoration: none;
+		transition: .5s color;
+		&:hover {
+			color: $primary-color-dark;
+		}
+	}
+}
+
+@mixin display-flex-center {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+@mixin subreddits-list {
+	cursor: pointer;
+	&:before {
+		color: $primary-color;
+		font-family: 'FontAwesome';
+		content: '\f004';
+		margin:0 5px 0 -15px;
+	}
+	&:hover {
+		color: $primary-color;
+		font-weight: bold;
+	}
+}

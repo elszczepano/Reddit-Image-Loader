@@ -1,0 +1,60 @@
+@import 'variables';
+@import 'mixins';
+
+.cheatsheet-table__wrapper {
+	@include display-flex-center;
+}
+
+.cheatsheet-table {
+	width: 90%;
+	display: grid;
+	grid-template-columns: repeat( 5, 1fr );
+	grid-gap: 5px;
+	tr {
+		display: grid;
+		grid-template-rows: 40px 1fr;
+		border-collapse: collapse;
+		background: #fafafa;
+	}
+	tr:nth-child( 2n ) {
+		background: #ededed;
+	}
+	th {
+		background-color: $primary-color;
+		color: $primary-white;
+		text-transform: uppercase;
+		font-size: 18px;
+		padding: 6px 0;
+	}
+}
+
+.cheatsheet-list {
+	list-style: none;
+	.cheatsheet-list__item {
+		@include subreddits-list;
+	}
+}
+
+@media (max-width: 1500px) {
+	.cheatsheet-table {
+		grid-template-columns: repeat( 4, 1fr );
+	}
+}
+
+@media (max-width: 1200px) {
+	.cheatsheet-table {
+		grid-template-columns: repeat( 3, 1fr );
+	}
+}
+
+@media (max-width: 1000px) {
+	.cheatsheet-table {
+		grid-template-columns: repeat( 2, 1fr );
+	}
+}
+
+@media (max-width: 700px) {
+	.cheatsheet-table {
+		grid-template-columns: repeat( 1, 1fr );
+	}
+}
