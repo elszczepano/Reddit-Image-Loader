@@ -9,7 +9,7 @@
 			</div>
 			<hr class="notification-box__breaking-line">
 			<footer class="notification-box__footer notification-footer">
-				<button class="notification-footer__button" @click="$emit('close')" type="submit" name="button">close</button>
+				<button class="notification-footer__button" @click="$emit( 'close' )" type="submit" name="button">close</button>
 			</footer>
 		</div>
 	</transition>
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-	name: 'ErrorDisplay',
+	name: 'ErrorPopup',
 	props: {
 		showError: {
 			type: Boolean,

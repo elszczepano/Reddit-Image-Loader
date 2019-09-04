@@ -4,7 +4,7 @@
 			<header class="bar-menu">
 				<ul class="bar-menu__list">
 					<li class="bar-menu__list__item bar-menu__title">
-						<router-link to="/">Reddit image loader<span class="fa fa-reddit-alien" aria-hidden="true"/></router-link>
+						<router-link to="/">Reddit Image Loader<span class="fa fa-reddit-alien" aria-hidden="true"/></router-link>
 					</li>
 					<li class="bar-menu__list__item">https://www.reddit.com/r/
 						<input
@@ -15,13 +15,13 @@
 							placeholder="subreddit-name"
 						>
 						<span class="encourage-desktop"> and hit ENTER!</span>
-						<span class="encourage-mobile">and<button @click="createRequestURL" class="nav-pill">SEARCH</button></span>
+						<span class="encourage-mobile">and<button @click="createRequestURL" class="nav-pill nav-pill--search">search</button></span>
 					</li>
 					<li class="bar-menu__list__item">
-						<button :disabled="!URLBefore" @click="createRequestURL('prev')" class="nav-pill">
+						<button :disabled="!URLBefore" @click="createRequestURL( 'prev' )" class="nav-pill">
 							<span class="fa fa-arrow-left" aria-hidden="true"/>Prev
 						</button>
-						<button :disabled="!URLAfter" @click="createRequestURL('next')" class="nav-pill">
+						<button :disabled="!URLAfter" @click="createRequestURL( 'next' )" class="nav-pill">
 							Next<span class="fa fa-arrow-right" aria-hidden="true"/>
 						</button>
 					</li>
@@ -34,27 +34,27 @@
 				<img :src="picture" class="photos-container__photo">
 			</transition>
 		</div>
-		<error-display v-if="showError" :error-value="error" @close="showError = false"/>
+		<error-popup v-if="showError" :error-value="errorMessage" @close="showError = false"/>
 		<widget />
 	</div>
 </template>
 
 <script>
 import { headroom } from 'vue-headroom';
-import ErrorDisplay from './ErrorDisplay.vue';
+import ErrorPopup from './ErrorPopup.vue';
 import Widget from './Widget.vue';
 import API from '../api';
 
 export default {
 	name: 'MainComponent',
 	components: {
-		ErrorDisplay,
+		ErrorPopup,
 		Widget,
 		headroom
 	},
 	data() {
 		return {
-			error: '',
+			errorMessage: '',
 			headroomSpeed: 500,
 			pictures: [],
 			showError: false,
@@ -100,7 +100,7 @@ export default {
 					} );
 				} )
 				.catch( error => {
-					this.error = error.message;
+					this.errorMessage = error.message;
 					this.showError = true;
 					this.URLBefore = null;
 					this.URLAfter = null;
@@ -108,7 +108,8 @@ export default {
 		},
 		createRequestURL( param ) {
 			this.pictures = [];
-			this.error = '';
+			this.errorMessage = '';
+			this.errorMessage = '';
 			this.showError = false;
 			let url = '';
 			switch ( param ) {

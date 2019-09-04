@@ -4,7 +4,7 @@
 .bar-menu {
 	@include single-picture-element;
 	margin-bottom: 2rem;
-  	background-color: $primary-color;
+  	background-color: $primary-green;
 	color: $primary-white;
 	.bar-menu__heading {
 		text-align: center;
@@ -38,7 +38,7 @@
         		outline: none;
         		user-select: none;
         		&::selection {
-          			background-color: $primary-color;
+          			background-color: $primary-green;
           			color: $primary-white;
         		}
         		&::placeholder {
@@ -50,17 +50,20 @@
 			all: unset;
       		color: $primary-white;
       		border-radius: $border-radius-default;
-			background-color: $primary-color-light;
+			background-color: $primary-green-light;
 			font-size: 0.875rem;
       		padding: 4px 8px;
-      		box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
+      		box-shadow: 0 1px 5px 0 rgba( 0, 0, 0, 0.2 ), 0 2px 2px 0 rgba( 0, 0, 0, 0.14 ), 0 3px 1px -2px rgba( 0, 0, 0, 0.12 );
       		&:hover {
-        		background-color: $primary-color-dark;
+        		background-color: $primary-green-dark;
         		cursor: pointer;
       		}
       		&:disabled {
         		display: none;
       		}
+		}
+		.nav-pill--search {
+			text-transform: uppercase;
 		}
  	}
 }
@@ -87,7 +90,7 @@
   	display: none;
 }
 
-@media (min-width: 1000px) {
+@media ( min-width: 1000px ) {
 	.bar-menu__cheatsheet .bar-menu__title {
 		position: absolute;
 		left: 0;
@@ -95,7 +98,7 @@
 	}
 }
 
-@media (max-width: 1000px) {
+@media ( max-width: 1000px ) {
   	.encourage-desktop {
     	display: none;
   	}

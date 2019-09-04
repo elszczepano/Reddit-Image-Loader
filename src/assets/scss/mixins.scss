@@ -1,7 +1,7 @@
 @import 'variables';
 
 @mixin single-picture-element {
-  	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  	box-shadow: 0 3px 6px rgba( 0, 0, 0, 0.16 ), 0 3px 6px rgba( 0, 0, 0, 0.23 );
   	user-select: none;
 }
 
@@ -14,7 +14,7 @@
 		text-decoration: none;
 		transition: .5s color;
 		&:hover {
-			color: $primary-color-dark;
+			color: $primary-green-dark;
 		}
 	}
 }
@@ -29,13 +29,13 @@
 @mixin subreddits-list {
 	cursor: pointer;
 	&:before {
-		color: $primary-color;
+		color: $primary-green;
 		font-family: 'FontAwesome';
 		content: '\f004';
-		margin:0 5px 0 -15px;
+		margin: 0 5px 0 -15px;
 	}
 	&:hover {
-		color: $primary-color;
+		color: $primary-green;
 		font-weight: bold;
 	}
 }

@@ -21,7 +21,7 @@
 		background: #ededed;
 	}
 	th {
-		background-color: $primary-color;
+		background-color: $primary-green;
 		color: $primary-white;
 		text-transform: uppercase;
 		font-size: 18px;
@@ -36,25 +36,25 @@
 	}
 }
 
-@media (max-width: 1500px) {
+@media ( max-width: 1500px ) {
 	.cheatsheet-table {
 		grid-template-columns: repeat( 4, 1fr );
 	}
 }
 
-@media (max-width: 1200px) {
+@media ( max-width: 1200px ) {
 	.cheatsheet-table {
 		grid-template-columns: repeat( 3, 1fr );
 	}
 }
 
-@media (max-width: 1000px) {
+@media ( max-width: 1000px ) {
 	.cheatsheet-table {
 		grid-template-columns: repeat( 2, 1fr );
 	}
 }
 
-@media (max-width: 700px) {
+@media ( max-width: 700px ) {
 	.cheatsheet-table {
 		grid-template-columns: repeat( 1, 1fr );
 	}

@@ -1,5 +1,5 @@
 <template lang="html">
-	<div :class="[isActive ? 'widget--active' : 'widget--inactive']" @click="isActive = !isActive" class="widget__container">
+	<div :class="[ isActive ? 'widget--active' : 'widget--inactive' ]" @click="isActive = !isActive" class="widget__container">
 		<div class="widget-icon__container">
 			<i class="widget-icon fa fa-file-text-o" aria-hidden="true"/>
 		</div>

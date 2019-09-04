@@ -15,11 +15,11 @@
     	color: $primary-white;
     	border-top-left-radius: 8px;
     	border-top-right-radius: 8px;
-    	background-color: $primary-color;
+    	background-color: $primary-green;
     	transition: .3s all;
     	cursor: pointer;
     	&:hover {
-      		transform: scale(1.1);
+      		transform: scale( 1.1 );
     	}
     	.widget-icon {
       		font-size: 2.5rem;
@@ -27,7 +27,7 @@
   	}
   	.widget-content {
     	background-color: $primary-white;
-    	border: 5px solid $primary-color;
+    	border: 5px solid $primary-green;
     	border-radius: $border-radius-default;
     	padding: 10px;
     	.widget-content__list {
