@@ -3,6 +3,7 @@
 
 .cheatsheet-table__wrapper {
 	@include display-flex-center;
+	margin-bottom: 2rem;
 }
 
 .cheatsheet-table {

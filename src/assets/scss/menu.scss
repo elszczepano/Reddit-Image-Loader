@@ -70,6 +70,7 @@
 	@include display-flex-center;
 	position: relative;
 	.bar-menu__title {
+		text-transform: uppercase;
 		align-items: center;
 		font-weight: 300;
 		margin: .5rem 1rem;
