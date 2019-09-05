@@ -1,32 +1,28 @@
-# Reddit Photo Loader
+# Reddit Image Loader
 
-This app displays photos from any subreddit. 
-All you need is a name of subreddit,
-hit enter and here you go!
+Reddit Image Loader is an application that allows you to view images from any subreddit you provide.
+All you need is type the name of the subreddit, hit enter and here you go - enjoy your images! 
+You can also choose ready to use cheatsheet widget or more complex cheatsheet subpage.
+Application has partly **.gif** support.
 
-Partly **.gif** support
+## Live demo
 
-## Live demo - [HERE](http://redditjsondemo.ct8.pl/)
+Live demo is available [here](http://redditjsondemo.ct8.pl/)!
 
-##  Installation
+##  Installation and usage
 
-Download or clone this repository and then
+1. Download or clone this repository:
 
-Install dependencies
+    ```
+    git clone https://github.com/elszczepano/Reddit-Image-Loader.git
+    cd Reddit-Image-Loader
+    ```
+   
+1.  Install dependencies using `npm install`.
 
-    npm install
-
-Serve with hot reload at localhost:8080
-
-    npm run dev
-
-Build for production with minification
-
-    npm run build
-
-Build for production and view the bundle analyzer report
-
-    npm run build --report
+1.  Serve with hot reload at localhost:8080 via `npm run dev`
+1.  Build for production with minification using `npm run build`
+1.  Build for production and view the bundle analyzer report via `npm run build --report`
 
 ##
 
