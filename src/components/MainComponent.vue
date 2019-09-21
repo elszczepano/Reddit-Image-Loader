@@ -15,7 +15,9 @@
 							placeholder="subreddit-name"
 						>
 						<span class="encourage-desktop"> and hit ENTER!</span>
-						<span class="encourage-mobile">and<button @click="createRequestURL" class="nav-pill nav-pill--search">search</button></span>
+						<span class="encourage-mobile">
+							and<button @click="createRequestURL" class="nav-pill nav-pill--search">search</button>
+						</span>
 					</li>
 					<li class="bar-menu__list__item">
 						<button :disabled="!URLBefore" @click="createRequestURL( 'prev' )" class="nav-pill">
