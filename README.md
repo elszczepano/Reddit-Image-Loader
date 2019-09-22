@@ -1,9 +1,9 @@
 # Reddit Image Loader
 
 Reddit Image Loader is an application that allows you to view images from any subreddit you provide.
-All you need is type the name of the subreddit, hit enter and here you go - enjoy your images! 
-You can also choose ready to use cheatsheet widget or more complex cheatsheet subpage.
-Application has partly **.gif** support.
+All you need is type the name of a subreddit, hit enter and here you go - enjoy your images! 
+You can also choose the ready to use cheatsheet widget or the more complex cheatsheet subpage.
+The application has partly **.gif** support.
 
 ## Live demo
 
