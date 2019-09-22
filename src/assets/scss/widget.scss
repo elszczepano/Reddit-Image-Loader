@@ -69,3 +69,9 @@
 		bottom: 50px;
 	}
 }
+
+@media (-webkit-min-device-pixel-ratio: 2) {
+	.widget--inactive {
+		bottom: -373px;
+	}
+}
