@@ -70,7 +70,7 @@
 	}
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) {
+@media (-webkit-min-device-pixel-ratio: 2) and (max-width: 768px) {
 	.widget--inactive {
 		bottom: -373px;
 	}
