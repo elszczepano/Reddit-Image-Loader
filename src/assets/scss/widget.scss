@@ -54,7 +54,7 @@
 }
 
 .widget--inactive {
-  	bottom: -361px;
+  	bottom: -362px;
   	transition: 0.5s all;
 }
 
@@ -67,5 +67,11 @@
 	}
   	100% {
 		bottom: 50px;
+	}
+}
+
+@media (-webkit-min-device-pixel-ratio: 2) and (max-width: 768px) {
+	.widget--inactive {
+		bottom: -373px;
 	}
 }
