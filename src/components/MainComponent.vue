@@ -10,22 +10,14 @@
 						<input
 							ref="subredditInput"
 							v-model="subreddit"
-							@keyup.enter="createRequestURL"
+							@keyup.enter="loadSubreddit"
 							id="subreddit" type="text"
 							placeholder="subreddit-name"
 						>
 						<span class="encourage-desktop"> and hit ENTER!</span>
 						<span class="encourage-mobile">
-							and<button @click="createRequestURL" class="nav-pill nav-pill--search">search</button>
+							and<button @click="loadSubreddit" class="nav-pill nav-pill--search">search</button>
 						</span>
-					</li>
-					<li class="bar-menu__list__item">
-						<button :disabled="!URLBefore" @click="createRequestURL( 'prev' )" class="nav-pill">
-							<span class="fa fa-arrow-left" aria-hidden="true"/>Prev
-						</button>
-						<button :disabled="!URLAfter" @click="createRequestURL( 'next' )" class="nav-pill">
-							Next<span class="fa fa-arrow-right" aria-hidden="true"/>
-						</button>
 					</li>
 				</ul>
 			</header>
@@ -38,6 +30,7 @@
 		</div>
 		<error-popup v-if="showError" :error-value="errorMessage" @close="showError = false"/>
 		<widget />
+		<infinite-loading @infinite="createRequestURL"></infinite-loading>
 	</div>
 </template>
 
@@ -75,6 +68,30 @@ export default {
 		}
 	},
 	methods: {
+		loadSubreddit() {
+			if ( !this.pictures.length || this.$route.query.subreddit !== this.subreddit ) {
+				this.createRequestURL();
+			}
+		},
+		createRequestURL( state ) {
+			if ( this.$route.query.subreddit !== this.subreddit ) {
+				this.$router.push( { query: { subreddit: this.subreddit } } );
+				this.pictures = [];
+			}
+
+			this.errorMessage = '';
+			this.showError = false;
+
+			if ( this.pictures.length ) {
+				this.URLCount += 25;
+				this.sendRequest(
+					state,
+					`https://www.reddit.com/r/${ this.subreddit }.json?count=${ this.URLCount }&after=${ this.URLAfter }`
+				);
+			} else {
+				this.sendRequest( state, `https://www.reddit.com/r/${ this.subreddit }.json` );
+			}
+		},
 		getSubredditFromURL() {
 			const query = this.$route.query || {};
 			const subreddit = query.subreddit;
@@ -87,7 +104,7 @@ export default {
 		checkImageFormat( url ) {
 			return url.slice( url.length - 4, url.length - 3 ) === '.';
 		},
-		sendRequest( url ) {
+		sendRequest( state, url ) {
 			API.get( url )
 				.then( response => {
 					this.URLBefore = response.data.data.before;
@@ -100,39 +117,21 @@ export default {
 							this.pictures.push( key.data.url );
 						}
 					} );
+
+					if ( state && state.loaded ) {
+						state.loaded();
+					}
 				} )
 				.catch( error => {
 					this.errorMessage = error.message;
 					this.showError = true;
 					this.URLBefore = null;
 					this.URLAfter = null;
+
+					if ( state && state.complete ) {
+						state.complete();
+					}
 				} );
-		},
-		createRequestURL( param ) {
-			this.$router.push( { query: { subreddit: this.subreddit } } );
-			this.pictures = [];
-			this.errorMessage = '';
-			this.errorMessage = '';
-			this.showError = false;
-			let url = '';
-			switch ( param ) {
-				case 'prev':
-					if ( this.URLCount % 5 === 0 ) {
-						this.URLCount++;
-					}
-					else {
-						this.URLCount -= 25;
-					}
-					url = `https://www.reddit.com/r/${ this.subreddit }.json?count=${ this.URLCount }&before=${ this.URLBefore }`;
-					break;
-				case 'next':
-					this.URLCount += 25;
-					url = `https://www.reddit.com/r/${ this.subreddit }.json?count=${ this.URLCount }&after=${ this.URLAfter }`;
-					break;
-				default:
-					url = `https://www.reddit.com/r/${ this.subreddit }.json`;
-			}
-			this.sendRequest( url );
 		}
 	}
 };
