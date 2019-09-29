@@ -109,6 +109,7 @@ export default {
 				} );
 		},
 		createRequestURL( param ) {
+			this.$router.push( { query: { subreddit: this.subreddit } } );
 			this.pictures = [];
 			this.errorMessage = '';
 			this.errorMessage = '';
