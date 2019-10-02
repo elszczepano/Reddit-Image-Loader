@@ -10,7 +10,7 @@
 					class="widget-content__list-item"
 					tag="li"
 					v-for="subreddit in subreddits"
-					:to="{ path: '/', query: { subreddit: subreddit } }"
+					:to="{ path: '/', query: { subreddit } }"
 					:key="subreddit"
 				>
 					{{ subreddit }}
