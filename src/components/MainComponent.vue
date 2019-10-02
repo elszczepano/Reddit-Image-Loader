@@ -30,7 +30,7 @@
 		</div>
 		<error-popup v-if="showError" :error-value="errorMessage" @close="showError = false"/>
 		<widget />
-		<infinite-loading @infinite="createRequestURL"></infinite-loading>
+		<infinite-loading v-if="isRunning" @infinite="createRequestURL"></infinite-loading>
 	</div>
 </template>
 
@@ -49,14 +49,13 @@ export default {
 	},
 	data() {
 		return {
+			isRunning: false,
 			errorMessage: '',
 			headroomSpeed: 500,
 			pictures: [],
 			showError: false,
 			subreddit: '',
-			URLAfter: null,
-			URLBefore: null,
-			URLCount: 0
+			URLAfter: null
 		};
 	},
 	mounted() {
@@ -64,29 +63,25 @@ export default {
 	},
 	watch: {
 		$route() {
-			this.getSubredditFromURL();
+			this.subreddit = this.$route.query.subreddit;
+			this.restartApp();
+			this.createRequestURL( this.$route.query.subreddit );
 		}
 	},
 	methods: {
 		loadSubreddit() {
-			if ( !this.pictures.length || this.$route.query.subreddit !== this.subreddit ) {
+			if ( this.$route.query.subreddit !== this.subreddit ) {
+				this.$router.push( { query: { subreddit: this.subreddit } } );
 				this.createRequestURL();
 			}
 		},
 		createRequestURL( state ) {
-			if ( this.$route.query.subreddit !== this.subreddit ) {
-				this.$router.push( { query: { subreddit: this.subreddit } } );
-				this.pictures = [];
-			}
-
-			this.errorMessage = '';
-			this.showError = false;
+			this.isRunning = true;
 
 			if ( this.pictures.length ) {
-				this.URLCount += 25;
 				this.sendRequest(
 					state,
-					`https://www.reddit.com/r/${ this.subreddit }.json?count=${ this.URLCount }&after=${ this.URLAfter }`
+					`https://www.reddit.com/r/${ this.subreddit }.json?after=${ this.URLAfter }`
 				);
 			} else {
 				this.sendRequest( state, `https://www.reddit.com/r/${ this.subreddit }.json` );
@@ -101,20 +96,17 @@ export default {
 				this.createRequestURL( subreddit );
 			}
 		},
-		checkImageFormat( url ) {
-			return url.slice( url.length - 4, url.length - 3 ) === '.';
-		},
 		sendRequest( state, url ) {
 			API.get( url )
-				.then( response => {
-					this.URLBefore = response.data.data.before;
-					this.URLAfter = response.data.data.after;
-					return response.data.data.children;
+				.then( ( { data } ) => {
+					this.URLAfter = data.data.after;
+					return data.data.children;
 				} )
 				.then( pictures => {
-					pictures.forEach( key => {
-						if ( this.checkImageFormat( key.data.url ) ) {
-							this.pictures.push( key.data.url );
+					pictures.forEach( ( { data } ) => {
+						const { url } = data;
+						if ( this.checkImageFormat( url ) || this.pictures.includes( url ) ) {
+							this.pictures.push( url );
 						}
 					} );
 
@@ -124,14 +116,22 @@ export default {
 				} )
 				.catch( error => {
 					this.errorMessage = error.message;
+					this.restartApp();
 					this.showError = true;
-					this.URLBefore = null;
-					this.URLAfter = null;
 
 					if ( state && state.complete ) {
 						state.complete();
 					}
 				} );
+		},
+		checkImageFormat( url ) {
+			return url.slice( url.length - 4, url.length - 3 ) === '.';
+		},
+		restartApp() {
+			this.errorMessage = '';
+			this.pictures = [];
+			this.showError = false;
+			this.isRunning = false;
 		}
 	}
 };
