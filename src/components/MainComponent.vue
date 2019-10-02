@@ -53,6 +53,7 @@ export default {
 			errorMessage: '',
 			headroomSpeed: 500,
 			pictures: [],
+			allowedFormats: [ 'jpg', 'jpeg', 'png', 'gif' ],
 			showError: false,
 			subreddit: '',
 			URLAfter: null
@@ -125,7 +126,8 @@ export default {
 				} );
 		},
 		checkImageFormat( url ) {
-			return url.slice( url.length - 4, url.length - 3 ) === '.';
+			const urlParts = url.split( '.' );
+			return this.allowedFormats.includes( urlParts[ urlParts.length - 1 ] );
 		},
 		restartApp() {
 			this.errorMessage = '';
