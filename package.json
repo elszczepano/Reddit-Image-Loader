@@ -1,6 +1,6 @@
 {
   "name": "reddit-image-loader",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Reddit Image Loader",
   "author": "Dominik Szczepaniak <szczepaniak.dominik98@gmail.com>",
   "private": false,
