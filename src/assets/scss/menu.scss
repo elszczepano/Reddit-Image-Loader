@@ -57,6 +57,9 @@
         		background-color: $primary-green-dark;
         		cursor: pointer;
       		}
+			&:disabled {
+				display: none;
+			}
 		}
 		.nav-pill--search {
 			text-transform: uppercase;
