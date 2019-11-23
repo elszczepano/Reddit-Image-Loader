@@ -12,16 +12,4 @@
     <div id="app"></div>
     <noscript>Enable Javascript to start!</noscript>
   </body>
-  <script>
-      const PATH = '/service-worker.js';
-
-      let isServiceWorkersSupport = ('serviceWorker' in navigator);
-
-      if (isServiceWorkersSupport) {
-          navigator.serviceWorker.register(PATH).then(function () {
-          }).catch(function (err) {
-              console.log("Error: ", err)
-          });
-      }
-  </script>
 </html>
